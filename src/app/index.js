@@ -5,7 +5,7 @@ import store from "./store";
 
 import Orders from "./containers/Orders";
 
-import base from "./components/HOC/Base";
+import base from "./containers/HOC/Base";
 
 function App() {
   return (
