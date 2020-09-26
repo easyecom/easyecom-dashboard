@@ -7,8 +7,14 @@ class DinamicListSimple extends React.Component {
 
   onChangeInput = (event) => this.setState({ text: event.target.value });
 
+  onAdd() {
+    const { text } = this.state;
+    this.props.onAdd(text);
+    this.setState({ text: "" });
+  }
+
   render() {
-    const { datas, onAdd, onRemove } = this.props;
+    const { datas, onRemove } = this.props;
     const { text } = this.state;
     return (
       <div className="flex y-axis">
@@ -43,7 +49,7 @@ class DinamicListSimple extends React.Component {
           <div className="flex-1 flex flex-center">
             <ButtonSimple
               type="success"
-              onClick={() => onAdd(text)}
+              onClick={() => this.onAdd(text)}
               label="+"
             />
           </div>
