@@ -1,0 +1,56 @@
+import React from "react";
+import ButtonSimple from "../Button/Simple";
+import InputSimple from "../../components/Inputs/Simple";
+
+class DinamicListSimple extends React.Component {
+  state = { text: "" };
+
+  onChangeInput = (event) => this.setState({ text: event.target.value });
+
+  render() {
+    const { datas, onAdd, onRemove } = this.props;
+    const { text } = this.state;
+    return (
+      <div className="flex y-axis">
+        {datas.map((item, index) => {
+          return (
+            <div>
+              <div key={index} className="flex x-axis">
+                <div className="flex-3 flex y-axis">
+                  <span>{item}</span>
+                </div>
+                {onRemove && (
+                  <div className="flex-1 flex flex-center">
+                    <ButtonSimple
+                      type="danger"
+                      onClick={() => onRemove(index)}
+                      label="-"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+        <div className="flex x-axis">
+          <div className="flex-3 flex y-axis">
+            <InputSimple
+              type="text"
+              value={text}
+              onChange={this.onChangeInput}
+            />
+          </div>
+          <div className="flex-1 flex flex-center">
+            <ButtonSimple
+              type="success"
+              onClick={() => onAdd(text)}
+              label="+"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default DinamicListSimple;

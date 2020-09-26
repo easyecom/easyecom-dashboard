@@ -6,6 +6,7 @@ import store from "./store";
 import base from "./containers/HOC/Base";
 
 import Orders from "./containers/Orders";
+import OrderDetails from "./containers/Order";
 import Login from "./containers/Login";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <div className="App">
           <Route path={"/"} exact component={base(Orders)} />
+          <Route path={"/Pedido"} exact component={base(OrderDetails)} />
           <Route path={"/login"} exact component={Login} />
         </div>
       </Router>
