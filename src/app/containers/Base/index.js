@@ -1,7 +1,8 @@
 import React from "react";
 
-import Header from "./Header";
-import Menu from "./Menu";
+import Header from "./Header/index";
+import Menu from "./Menu/index";
+import { Container } from "./styles";
 
 class Dashboard extends React.Component {
   render() {
@@ -14,7 +15,9 @@ class Dashboard extends React.Component {
           <div className="flex x-axis">
             <Header />
           </div>
-          <div className="flex full-height">{this.props.children}</div>
+          <Container>
+            <div className="flex full-height">{this.props.children}</div>
+          </Container>
         </div>
       </div>
     );
