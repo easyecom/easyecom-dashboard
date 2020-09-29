@@ -3,16 +3,19 @@ import moment from "moment";
 
 import Title from "../../components/Text/Title.js";
 
-import Search from "../../components/Inputs/Search";
+import Search from "../../components/Inputs/Search/index";
 import Table from "../../components/Table/Simple";
 import Pagination from "../../components/Pagination/Simple";
+
+import { Container } from "./styles";
 
 class Orders extends Component {
   state = {
     search: "",
     atual: 0,
   };
-  searchHandler = (event) => this.setState({ search: event.target.value });
+  
+  onChangeSearch = (event) => this.setState({ search: event.target.value });
 
   changeAtualNumber = (atual) => this.setState({ atual });
 
@@ -21,54 +24,119 @@ class Orders extends Component {
 
     const datas = [
       {
-        Cliente: "Malaquias",
-        Total: 77.9,
-        Data: moment().toISOString(),
-        Status: "aguardando pagamento",
+        CLIENTE: "Malaquias",
+        TOTAL: "R$ 77.90",
+        DATA: moment().toISOString(),
+        STATUS: "aguardando pagamento",
         buttonDetails: "/pedido/34654456",
       },
       {
-        Cliente: "Joaquina",
-        Total: 240.0,
-        Data: moment().toISOString(),
-        Status: "pronto para manuseio",
+        CLIENTE: "Joaquina",
+        TOTAL: "R$ 240.0",
+        DATA: moment().toISOString(),
+        STATUS: "pronto para manuseio",
         buttonDetails: "/pedido/34654457",
       },
       {
-        Cliente: "Tobias",
-        Total: 100.9,
-        Data: moment().toISOString(),
-        Status: "aguardando pagamento",
+        CLIENTE: "Tobias",
+        TOTAL: "R$ 100.90",
+        DATA: moment().toISOString(),
+        STATUS: "aguardando pagamento",
         buttonDetails: "/pedido/34654458",
       },
+      {
+        CLIENTE: "Malaquias",
+        TOTAL: "R$ 77.90",
+        DATA: moment().toISOString(),
+        STATUS: "aguardando pagamento",
+        buttonDetails: "/pedido/34654456",
+      },
+      {
+        CLIENTE: "Joaquina",
+        TOTAL: "R$ 240.0",
+        DATA: moment().toISOString(),
+        STATUS: "pronto para manuseio",
+        buttonDetails: "/pedido/34654457",
+      },
+      {
+        CLIENTE: "Tobias",
+        TOTAL: "R$ 100.90",
+        DATA: moment().toISOString(),
+        STATUS: "aguardando pagamento",
+        buttonDetails: "/pedido/34654458",
+      },
+      // {
+      //   CLIENTE: "Malaquias",
+      //   TOTAL: "R$ 77.90",
+      //   DATA: moment().toISOString(),
+      //   STATUS: "aguardando pagamento",
+      //   buttonDetails: "/pedido/34654456",
+      // },
+      // {
+      //   CLIENTE: "Joaquina",
+      //   TOTAL: "R$ 240.0",
+      //   DATA: moment().toISOString(),
+      //   STATUS: "pronto para manuseio",
+      //   buttonDetails: "/pedido/34654457",
+      // },
+      // {
+      //   CLIENTE: "Tobias",
+      //   TOTAL: "R$ 100.90",
+      //   DATA: moment().toISOString(),
+      //   STATUS: "aguardando pagamento",
+      //   buttonDetails: "/pedido/34654458",
+      // },
+      // {
+      //   CLIENTE: "Malaquias",
+      //   TOTAL: "R$ 77.90",
+      //   DATA: moment().toISOString(),
+      //   STATUS: "aguardando pagamento",
+      //   buttonDetails: "/pedido/34654456",
+      // },
+      // {
+      //   CLIENTE: "Joaquina",
+      //   TOTAL: "R$ 240.0",
+      //   DATA: moment().toISOString(),
+      //   STATUS: "pronto para manuseio",
+      //   buttonDetails: "/pedido/34654457",
+      // },
+      // {
+      //   CLIENTE: "Tobias",
+      //   TOTAL: "R$ 100.90",
+      //   DATA: moment().toISOString(),
+      //   STATUS: "aguardando pagamento",
+      //   buttonDetails: "/pedido/34654458",
+      // }
     ];
 
     return (
-      <div className="orders">
-        <div className="Card">
-          <Title type="h1" title="Orders" />
-          <br />
-          <Search
-            value={search}
-            placeholder={"Buscar pedido por cliente"}
-            onChange={(event) => this.searchHandler(event)}
-            onClick={() => alert("Pesquisar")}
-          />
-          <br />
-          <Table
-            header={["Cliente", "Total", "Data", "Status"]}
-            datas={datas}
-          />
-          <Pagination
-            atual={this.state.atual}
-            total={120}
-            limit={20}
-            onClick={(atualNumberPage) =>
-              this.changeAtualNumber(atualNumberPage)
-            }
-          />
+      <Container>
+        <div className="orders">
+          <div className="Card">
+            <Title type="h1" title="Pedidos" />
+            <br />
+            <Search
+              value={search}
+              placeholder={"Buscar pedido por cliente"}
+              onChange={(event) => this.onChangeSearch(event)}
+              onClick={() => alert("Pesquisar")}
+            />
+            <br />
+            <Table
+              header={["CLIENTE", "TOTAL", "DATA", "STATUS"]}
+              datas={datas}
+            />
+            <Pagination
+              atual={this.state.atual}
+              total={120}
+              limit={20}
+              onClick={(atualNumberPage) =>
+                this.changeAtualNumber(atualNumberPage)
+              }
+            />
+          </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }
