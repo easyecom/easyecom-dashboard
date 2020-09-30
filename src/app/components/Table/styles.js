@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
 
   .simple {
-    width: 100%;
+    width: 99%;
   }
 
   table.simple {
@@ -19,14 +19,18 @@ export const Container = styled.div`
 
     .list-order {
       border-top: 1px solid #c9c9c9;
-      padding: 20px 100px 10px 0;
+      padding: 20px 10px 10px 0;
     }
 
     .button-details {
+      padding-left: -10;
+      width: 10px;
+      // background: red;
+      border-top: 1px solid #c9c9c9;
       button {
         border: none;
         height: 35px;
-        background: #3895d3;
+        background: #cc8400;
         color: #fff;
         border-radius: 3px;
         font-weight: 500;

@@ -14,7 +14,7 @@ class Orders extends Component {
     search: "",
     atual: 0,
   };
-  
+
   onChangeSearch = (event) => this.setState({ search: event.target.value });
 
   changeAtualNumber = (atual) => this.setState({ atual });
@@ -24,6 +24,7 @@ class Orders extends Component {
 
     const datas = [
       {
+        "ID PEDIDO": 76567976598,
         CLIENTE: "Malaquias",
         TOTAL: "R$ 77.90",
         DATA: moment().toISOString(),
@@ -31,6 +32,7 @@ class Orders extends Component {
         buttonDetails: "/pedido/34654456",
       },
       {
+        "ID PEDIDO": 76567976598,
         CLIENTE: "Joaquina",
         TOTAL: "R$ 240.0",
         DATA: moment().toISOString(),
@@ -38,6 +40,7 @@ class Orders extends Component {
         buttonDetails: "/pedido/34654457",
       },
       {
+        "ID PEDIDO": 76567976598,
         CLIENTE: "Tobias",
         TOTAL: "R$ 100.90",
         DATA: moment().toISOString(),
@@ -45,6 +48,7 @@ class Orders extends Component {
         buttonDetails: "/pedido/34654458",
       },
       {
+        "ID PEDIDO": 76567976598,
         CLIENTE: "Malaquias",
         TOTAL: "R$ 77.90",
         DATA: moment().toISOString(),
@@ -52,6 +56,7 @@ class Orders extends Component {
         buttonDetails: "/pedido/34654456",
       },
       {
+        "ID PEDIDO": 76567976598,
         CLIENTE: "Joaquina",
         TOTAL: "R$ 240.0",
         DATA: moment().toISOString(),
@@ -59,6 +64,7 @@ class Orders extends Component {
         buttonDetails: "/pedido/34654457",
       },
       {
+        "ID PEDIDO": 76567976598,
         CLIENTE: "Tobias",
         TOTAL: "R$ 100.90",
         DATA: moment().toISOString(),
@@ -123,7 +129,7 @@ class Orders extends Component {
             />
             <br />
             <Table
-              header={["CLIENTE", "TOTAL", "DATA", "STATUS"]}
+              header={["ID PEDIDO", "CLIENTE", "TOTAL", "DATA", "STATUS"]}
               datas={datas}
             />
             <Pagination

@@ -1,25 +1,28 @@
 import React, { Component } from "react";
 
-import OrderDetails from "./OrderDetails";
-import DeliveryDetails from "./DeliveryDetails";
-import PaymentDetails from "./PaymentDetails";
+import OrderDetails from "./OrderDetails/index";
+import DeliveryDetails from "./DeliveryDetails/index";
+import PaymentDetails from "./PaymentDetails/index";
+import { Container } from "./styles";
 
 export default class Order extends Component {
   render() {
     return (
-      <div>
-        <div className="OrderDetails flex y-axis">
-          <OrderDetails />
-        </div>
-        <div className="flex x-axis">
-          <div className=" flex-1 flex x-axis">
-            <DeliveryDetails />
+      <Container>
+        <div>
+          <div className="OrderDetails flex y-axis">
+            <OrderDetails />
           </div>
-          <div className="flex-1 flex x-axis">
-            <PaymentDetails />
+          <div className="flex x-axis">
+            <div className=" flex-1 flex x-axis">
+              <DeliveryDetails />
+            </div>
+            <div className="flex-1 flex x-axis">
+              <PaymentDetails />
+            </div>
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

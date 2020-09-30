@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 0 0 0 0px;
   height: 70px;
-  border-bottom: 1px dotted #cc8400;
+  border-bottom: 1px solid #d6d6d6;
 
   .header-box {
     height: 100%;

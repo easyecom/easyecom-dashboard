@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .Menu {
-    width: 100%;
-    max-width: 100%;
     background: #363636;
   }
 

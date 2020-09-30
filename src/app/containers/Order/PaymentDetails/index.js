@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Title from "../../components/Text/Title";
-import DinamicList from "../../components/List/DinamicListSimple"
+import Title from "../../../components/Text/Title";
+import DinamicList from "../../../components/List/DinamicListSimple";
+import { Container } from "./styles";
 
 export default class PaymentDetails extends Component {
   state = {
@@ -28,15 +29,17 @@ export default class PaymentDetails extends Component {
   render() {
     const { status } = this.state;
     return (
-      <div>
-        <div className="PaymentDetails flex y-axis"></div>
-        <Title type="h4" title="pagamento" />
-        <DinamicList
-          datas={status}
-          onRemove={this.onRemoveDinamicList}
-          onAdd={this.onAddDinamicList}
-        />
-      </div>
+      <Container>
+        <div>
+          <div className="PaymentDetails flex y-axis"></div>
+          <Title type="h4" title="PAGAMENTO" />
+          <DinamicList
+            datas={status}
+            onRemove={this.onRemoveDinamicList}
+            onAdd={this.onAddDinamicList}
+          />
+        </div>
+      </Container>
     );
   }
 }

@@ -16,8 +16,8 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  .Pagination-item:hover, .Pagination-item-active {
-    background-color: #3895d3;
+  .Pagination-item:hover, .paginate-item-active {
+    background-color: #cc8400;
     color: #fff;
     border: 1px solid #d6d6d6;
   }
