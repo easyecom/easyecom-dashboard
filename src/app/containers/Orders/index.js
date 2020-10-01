@@ -29,7 +29,7 @@ class Orders extends Component {
         TOTAL: "R$ 77.90",
         DATA: moment().toISOString(),
         STATUS: "aguardando pagamento",
-        buttonDetails: "/pedido/34654456",
+        buttonDetails: "/Pedido",
       },
       {
         "ID PEDIDO": 76567976598,
@@ -37,7 +37,7 @@ class Orders extends Component {
         TOTAL: "R$ 240.0",
         DATA: moment().toISOString(),
         STATUS: "pronto para manuseio",
-        buttonDetails: "/pedido/34654457",
+        buttonDetails: "/Pedido",
       },
       {
         "ID PEDIDO": 76567976598,
@@ -45,7 +45,7 @@ class Orders extends Component {
         TOTAL: "R$ 100.90",
         DATA: moment().toISOString(),
         STATUS: "aguardando pagamento",
-        buttonDetails: "/pedido/34654458",
+        buttonDetails: "/Pedido",
       },
       {
         "ID PEDIDO": 76567976598,
@@ -53,7 +53,7 @@ class Orders extends Component {
         TOTAL: "R$ 77.90",
         DATA: moment().toISOString(),
         STATUS: "aguardando pagamento",
-        buttonDetails: "/pedido/34654456",
+        buttonDetails: "/Pedido",
       },
       {
         "ID PEDIDO": 76567976598,
@@ -61,7 +61,7 @@ class Orders extends Component {
         TOTAL: "R$ 240.0",
         DATA: moment().toISOString(),
         STATUS: "pronto para manuseio",
-        buttonDetails: "/pedido/34654457",
+        buttonDetails: "/Pedido",
       },
       {
         "ID PEDIDO": 76567976598,
@@ -69,7 +69,7 @@ class Orders extends Component {
         TOTAL: "R$ 100.90",
         DATA: moment().toISOString(),
         STATUS: "aguardando pagamento",
-        buttonDetails: "/pedido/34654458",
+        buttonDetails: "/Pedido",
       },
       // {
       //   CLIENTE: "Malaquias",

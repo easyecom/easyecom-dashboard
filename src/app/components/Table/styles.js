@@ -14,7 +14,7 @@ export const Container = styled.div`
     th {
       padding: 10px 0;
       text-align: start;
-      // background: red;
+
     }
 
     .list-order {
@@ -34,10 +34,7 @@ export const Container = styled.div`
         color: #fff;
         border-radius: 3px;
         font-weight: 500;
+        cursor: pointer;
       }
-    }
-
-    td {
-    }
   }
 `;
