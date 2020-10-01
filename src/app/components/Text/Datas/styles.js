@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-//   background: red;
-  width: 100%;
-  padding: 10px;
+
+  div {
+    margin-bottom: 3px;
+    letter-spacing: 0.3px;
+  }
 `;

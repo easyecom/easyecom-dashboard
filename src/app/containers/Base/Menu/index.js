@@ -12,7 +12,7 @@ class Menu extends Component {
     const { open } = this.state;
     return (
        <Container>
-        <div className={`Menu ${open ? "menu-open" : ""} full-height`}>
+        <div className={`Menu ${open ? "menu-open" : ""} container`}>
           <div
             className={`item-top flex ${open ? "flex-end" : "flex-center"}`}
             onClick={() => this.toggleOpen()}

@@ -2,6 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 //   background: red;
-  width: 100%;
-  padding: 10px;
+  height: 100px;
+
+  .text {
+      margin-bottom: 7px;
+  }
+
+  .input {
+    //   width: 50px;
+  }
 `;

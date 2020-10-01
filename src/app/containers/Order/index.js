@@ -13,7 +13,7 @@ export default class Order extends Component {
           <div className="OrderDetails flex y-axis">
             <OrderDetails />
           </div>
-          <div className="flex x-axis">
+          <div className="flex x-axis container-update-order">
             <div className=" flex-1 flex x-axis">
               <DeliveryDetails />
             </div>

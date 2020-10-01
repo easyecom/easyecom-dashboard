@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  .container {
+    height: 1090px;
+  }
+
   .Menu {
     background: #363636;
   }

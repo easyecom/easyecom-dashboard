@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Title from "../../../components/Text/Title";
-import DinamicList from "../../../components/List/DinamicListSimple";
+import DinamicList from "../../../components/List/DinamicListSimple/index";
 import { Container } from "./styles";
 
 export default class PaymentDetails extends Component {

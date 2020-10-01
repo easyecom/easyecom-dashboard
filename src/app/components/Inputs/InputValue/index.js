@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Tracking } from "./styles";
 
 class InputValue extends Component {
   state = {
@@ -21,7 +22,11 @@ class InputValue extends Component {
     return (
       <div className="Input-value input-open-value">
         <div>
-          <input value={value} onChange={this.onChange} name={this.props.name}/>
+          <input
+            value={value}
+            onChange={this.onChange}
+            name={this.props.name}
+          />
         </div>
         <div>
           <div onClick={() => this.handleSubmit(value)}>
@@ -38,12 +43,15 @@ class InputValue extends Component {
   renderValue() {
     const { value } = this.props;
     return (
-      <div className="Input-Value">
-        <span>{value}</span>
-        <div onClick={() => this.toggleForm()}>
-          <i className="fas fa-edit" />
+      <Tracking>
+        <label>Código de rastreamento</label>
+        <div className="Input-Value">
+          <span>{value}</span>
+          <div onClick={() => this.toggleForm()}>
+            <i className="fas fa-edit" />
+          </div>
         </div>
-      </div>
+      </Tracking>
     );
   }
 

@@ -3,14 +3,14 @@ import Title from "../../../components/Text/Title";
 
 import ButtonSimple from "../../../components/Button/Simple";
 import TableSimple from "../../../components/Table/Simple";
-import { DataText } from "../../../components/Text/Datas";
+import { DataText } from "../../../components/Text/Datas/index";
 import { Header, Client, Cart, Delivery, Payment, Container } from "./styles";
 
 export default class OrderDetails extends Component {
   renderHeader() {
     return (
-      <Header> 
-        <div className="container flex flex-start "> 
+      <Header>
+        <div className="container flex flex-start ">
           <div className="order-details-title">
             <Title type="h2" title="Pedido - 76567976598" />
           </div>
@@ -69,13 +69,7 @@ export default class OrderDetails extends Component {
         "Preço Und": "R$ 60,00",
         Quantidade: "1",
         "Preço total": "R$ 60,00",
-      },
-      {
-        Produto: "Camiseta Nike",
-        "Preço Und": "R$ 120,00",
-        Quantidade: "2",
-        "Preço total": "R$ 240,00",
-      },
+      }
     ];
 
     return (
