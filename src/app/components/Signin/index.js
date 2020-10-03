@@ -24,7 +24,7 @@ export default class Login extends Component {
         <div className="box">
           <div className="subTitle">
             <p>
-              Não tem uma conta ? <strong>Crie Uma Conta </strong>e teste gratis
+              Não tem uma conta? <strong>Crie Uma Conta </strong>e teste gratis
               por 30 dias
             </p>
           </div>

@@ -24,11 +24,9 @@ export const Container = styled.div`
       justify-content: center;
       flex-direction: column;
 
-      /* opacity: 0.5; */
       background: url(https://www.climba.com.br/blog/wp-content/uploads/2018/12/259186-retirar-o-produto-na-loja-fisica-o-novo-diferencial-do-ecommerce.png)
         center center / 100% 100%;
       background-color: #cc8400;
-      /* border: 1px solid #999; */
       color: #fff;
 
       width: 50%;
@@ -40,7 +38,6 @@ export const Container = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 1px solid #999;
       width: 50%;
       height: 100%;
 
@@ -63,7 +60,6 @@ export const Container = styled.div`
           border-bottom: 2px solid #00008b;
           font-weight: bold;
           color: #00008b;
-          
           outline: none;
         }
       }

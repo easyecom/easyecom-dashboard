@@ -69,7 +69,7 @@ export default class OrderDetails extends Component {
         "Preço Und": "R$ 60,00",
         Quantidade: "1",
         "Preço total": "R$ 60,00",
-      }
+      },
     ];
 
     return (
