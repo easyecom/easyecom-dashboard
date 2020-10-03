@@ -22,7 +22,9 @@ export default class Login extends Component {
       <Container>
         <div>
           <div className="subTitle">
-            <p>Faça seu cadastro e dê vida digital so seu negocio</p>
+            <p>
+              <strong>EASYECOM</strong>, vida digital para o seu negocio
+            </p>
           </div>
           <Input
             placeholder={"Name"}

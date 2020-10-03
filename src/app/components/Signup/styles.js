@@ -7,29 +7,12 @@ export const Container = styled.div`
   .subTitle {
     text-align: center;
     width: 100%;
-    margin: 20px 0;
+    margin: 30px 0 20px 0;
     font-size: 16px;
     color: #999;
 
     strong {
       color: #39ff14;
-    }
-  }
-
-  .box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-direction: column;
-    .checkBox {
-      width: 600px;
-      margin: 20px 0;
-      color: #777;
-
-      input {
-        margin-left: 50px;
-      }
     }
   }
 
