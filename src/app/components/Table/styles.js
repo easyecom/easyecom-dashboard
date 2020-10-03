@@ -30,7 +30,7 @@ export const Container = styled.div`
       button {
         border: none;
         height: 35px;
-        background: #cc8400;
+        background: #81b71a;
         color: #fff;
         border-radius: 3px;
         font-weight: 500;

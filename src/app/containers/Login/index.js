@@ -1,60 +1,41 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Title from "../../components/Text/Title";
-import Input from "../../components/Inputs/Simple";
-import Checkbox from "../../components/Inputs/Checkbox";
-import Button from "../../components/Button/Simple";
+import Signin from "../../components/Signin/index";
+import Signup from "../../components/Signup/index";
 import { Container } from "./styles";
 
 export default class Login extends Component {
   state = {
-    email: "",
-    password: "",
-    rememberPassword: false,
+    on: true,
   };
 
-  handleInput = (field, event) =>
-    this.setState({ [field]: event.target.value });
-
-  handleCheckbox = (field) => this.setState({ [field]: !this.state[field] });
+  active = () => {
+    this.setState({ on: !this.state.on });
+  };
 
   render() {
-    const { email, password, rememberPassword } = this.state;
-
     return (
       <Container>
         <div className="Login">
-          <div className="image">
-            <img />
-          </div>
+          <div className="image"></div>
           <div className="card">
-            <Title type="h1" title="Easyecom" />
-            <p>Faça seu login abaixo</p>
-            <Input
-              label="E-mail"
-              value={email}
-              type="email"
-              onChange={(event) => this.handleInput("email", event)}
-            />
-            <Input
-              label="Password"
-              value={password}
-              type="password"
-              onChange={(event) => this.handleInput("password", event)}
-            />
-            <div>
-              <div>
-                <Checkbox
-                  value={rememberPassword}
-                  onChange={() => this.handleCheckbox("rememberPassword")}
-                  label="Lembra senha?"
-                />
-              </div>
-              <div>
-                <Link to="/recuperar-senha">Esqueceu sua senha?</Link>
-              </div>
+            {/* <Title type="h1" title="EASYECOM PLATAFORM" /> */}
+            <div className="login-cadastro">
+              <button
+                onClick={this.active}
+                className={`${this.state.on ? "button-active" : ""}`}
+              >
+                Entrar
+              </button>
+              <button
+                onClick={this.active}
+                className={`${!this.state.on ? "button-active" : ""}`}
+              >
+                Cadastrar
+              </button>
             </div>
-            <Button type="success" route="/" label="Entrar" />
+            {this.state.on && <Signin />}
+            {!this.state.on && <Signup />}
           </div>
         </div>
       </Container>

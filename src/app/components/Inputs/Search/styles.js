@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
 
   .Search input {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
     padding: 8px 15px;
     border: 1px solid #c9c9c9;
     font-size: 1rem;

@@ -10,9 +10,10 @@ export const Container = styled.div`
   }
 
   .item-top {
-    background: #cc8400;
+    background: #363636;
     height: 70px;
-    color: #fff;
+    color: #81b71a;
+    border-bottom: 1px solid #fff
   }
   .flex-end {
     padding-right: 10px;

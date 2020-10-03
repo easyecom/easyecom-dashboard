@@ -9,6 +9,6 @@ export const Container = styled.div`
   }
 
   .input {
-    //   width: 50px;
+      width: 50px;
   }
 `;

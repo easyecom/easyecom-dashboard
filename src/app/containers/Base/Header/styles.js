@@ -17,11 +17,13 @@ export const Container = styled.div`
   .fa-store {
     color: #3895d3;
   }
-
+  a {
+    text-decoration: none;
+  }
   .logout-store-header {
     padding-right: 20px;
     color: red;
-    
+
     .fa-power-off {
       padding-left: 5px;
       color: red;

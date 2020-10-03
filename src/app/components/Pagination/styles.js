@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
 
   .Pagination-item:hover, .paginate-item-active {
-    background-color: #cc8400;
+    background-color: #81b71a;
     color: #fff;
     border: 1px solid #d6d6d6;
   }

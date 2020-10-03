@@ -10,10 +10,10 @@ const Header = () => {
           <a href="/" className="text see-store-header">
             Ver loja
           </a>
-          <i className="fas fa-store" />
+          {/* <i className="fas fa-store" /> */}
         </div>
         <div className="flex-1 flex flex-end logout-store-header">
-          <Link to="Logout" className="text">
+          <Link to="Login" className="text">
             Sair
           </Link>
           <i className="fas fa-power-off" />
