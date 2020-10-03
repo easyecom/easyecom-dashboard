@@ -57,7 +57,7 @@ export const Container = styled.div`
         }
         
         .button-active {
-          border-bottom: 2px solid #00008b;
+          border-bottom: 3px solid #00008b;
           font-weight: bold;
           color: #00008b;
           outline: none;

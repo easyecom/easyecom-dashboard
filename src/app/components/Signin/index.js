@@ -5,7 +5,10 @@ import Checkbox from "../Inputs/Checkbox";
 import Button from "../Button/Simple";
 import { Container } from "./styles";
 
-export default class Login extends Component {
+import { connect } from "react-redux";
+import * as actions from "../../actions";
+
+class Login extends Component {
   state = {
     email: "",
     password: "",
@@ -16,6 +19,13 @@ export default class Login extends Component {
     this.setState({ [field]: event.target.value });
 
   handleCheckbox = (field) => this.setState({ [field]: !this.state[field] });
+
+  handleLogin() {
+    const { email, password } = this.state;
+    this.props.handleLogin({ email, password }, () => {
+      alert("aviso");
+    });
+  }
 
   render() {
     const { email, password, rememberPassword } = this.state;
@@ -47,11 +57,16 @@ export default class Login extends Component {
               <Checkbox
                 value={rememberPassword}
                 onChange={() => this.handleCheckbox("rememberPassword")}
-                label="Lembra senha?"
+                label="Lembrar senha?"
               />
             </div>
           </div>
-          <Button type="success" route="/" label="ENTRAR" />
+          <Button
+            type="success"
+            // route="/"
+            label="ENTRAR"
+            onClick={() => this.handleLogin()}
+          />
           <div>
             <Link to="/recuperar-senha">Esqueceu sua senha?</Link>
           </div>
@@ -60,3 +75,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default connect(null, actions)(Login);

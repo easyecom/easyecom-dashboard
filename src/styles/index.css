@@ -41,6 +41,7 @@ body {
 
 button {
   cursor: pointer;
+  outline: none;
 }
 
 .flex-start {

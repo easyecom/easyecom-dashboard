@@ -12,7 +12,7 @@ export const Container = styled.div`
     color: #999;
 
     strong {
-      color: #39ff14;
+      color: #81b71a;
     }
   }
 
@@ -53,7 +53,7 @@ export const Container = styled.div`
     height: 50px;
     border-radius: 30px;
     border: none;
-    background: #39ff14;
+    background: #81b71a;
     color: #fff;
     font-size: 18px;
     font-weight: bold;

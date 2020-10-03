@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Title from "../../components/Text/Title";
 import Signin from "../../components/Signin/index";
 import Signup from "../../components/Signup/index";
 import { Container } from "./styles";
