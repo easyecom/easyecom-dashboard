@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Input from "../Inputs/Simple";
 import Checkbox from "../Inputs/Checkbox";
 import Button from "../Button/Simple";
 import { Container } from "./styles";
+import { api } from "../../config";
 
 import { connect } from "react-redux";
 import * as actions from "../../actions";
@@ -14,15 +15,14 @@ class Login extends Component {
     password: "",
     rememberPassword: false,
   };
-
   handleInput = (field, event) =>
     this.setState({ [field]: event.target.value });
 
   handleCheckbox = (field) => this.setState({ [field]: !this.state[field] });
 
   handleLogin() {
-    const { email, password } = this.state;
-    this.props.handleLogin({ email, password }, () => {
+    const { email, password, rememberPassword } = this.state;
+    this.props.handleLogin({ email, password, rememberPassword }, () => {
       alert("aviso");
     });
   }
@@ -63,12 +63,15 @@ class Login extends Component {
           </div>
           <Button
             type="success"
-            // route="/"
+            route="/"
             label="ENTRAR"
             onClick={() => this.handleLogin()}
           />
           <div>
-            <Link to="/recuperar-senha">Esqueceu sua senha?</Link>
+            <a href={`${api}/recovery`}>
+              <small>Esqueceu sua senha?</small>
+            </a>
+            {/* <Link to="/recuperar-senha">Esqueceu sua senha?</Link> */}
           </div>
         </div>
       </Container>
