@@ -34,7 +34,7 @@ export const Container = styled.div`
     color: #000;
     font-weight: bold;
 
-    .fas-store-header: {
+    .fas-store-header {
       margin-right: 15px;
     }
   }

@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Container } from "./styles";
 
-const Header = () => {
+const Header = ({ handleLogout }) => {
   return (
     <Container>
       <div className="flex x-axis full-width header-box">
@@ -13,9 +12,9 @@ const Header = () => {
           {/* <i className="fas fa-store" /> */}
         </div>
         <div className="flex-1 flex flex-end logout-store-header">
-          <Link to="Login" className="text">
+          <a href="/" onClick={() => handleLogout()} className="text">
             Sair
-          </Link>
+          </a>
           <i className="fas fa-power-off" />
         </div>
       </div>

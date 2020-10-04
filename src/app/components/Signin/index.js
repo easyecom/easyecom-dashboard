@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import Input from "../Inputs/Simple";
 import Checkbox from "../Inputs/Checkbox";
 import Button from "../Button/Simple";
@@ -13,7 +12,7 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
-    rememberPassword: false,
+    rememberPassword: true,
   };
   handleInput = (field, event) =>
     this.setState({ [field]: event.target.value });
@@ -63,7 +62,6 @@ class Login extends Component {
           </div>
           <Button
             type="success"
-            route="/"
             label="ENTRAR"
             onClick={() => this.handleLogin()}
           />

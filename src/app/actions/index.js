@@ -1,12 +1,11 @@
 import axios from "axios";
 
-// import { LOGIN_USER } from "./types";
+import { LOGIN_USER, LOGOUT_USER } from "./types";
 
 import { api } from "../config";
-import { LOGIN_USER } from "./types";
 
 const saveToken = (user, rememberPassword) => {
-  if (!user.token) return console.log("token nao encontrado");
+  if (!user || !user.token) return console.log("token nao encontrado");
   const [token1, token2, token3] = user.token.split(".");
   localStorage.setItem("token1", token1);
   localStorage.setItem("token2", token2);
@@ -31,8 +30,8 @@ const getToken = () => {
 
 const getHeaders = () => {
   return {
-    Headers: {
-      Authorization: `Bearer ${getToken}`,
+    headers: {
+      authorization: `Bearer ${getToken()}`,
     },
   };
 };
@@ -48,9 +47,8 @@ export const handleLogin = (
 ) => {
   return function (dispatch) {
     axios
-      .post(`${api}/session`, { email, password }, getHeaders())
+      .post(`${api}/session`, { email, password })
       .then((response) => {
-        // console.log(response.data.user);
         saveToken(response.data.user, rememberPassword);
         dispatch({ type: LOGIN_USER, payload: response.data });
       })
@@ -58,4 +56,27 @@ export const handleLogin = (
         console.log(error, error.response);
       });
   };
+};
+
+export const getUser = () => {
+  return function (dispatch) {
+    axios
+      .get(`${api}/users`, getHeaders())
+      .then((response) => {
+        saveToken(response.data.user, true);
+        dispatch({ type: LOGIN_USER, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(
+          error,
+          error.response,
+          error.response && error.response.data
+        );
+      });
+  };
+};
+
+export const handleLogout = () => {
+  clearToken();
+  return { type: LOGOUT_USER };
 };

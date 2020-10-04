@@ -3,6 +3,8 @@ import React from "react";
 import Header from "./Header/index";
 import Menu from "./Menu/index";
 import { Container } from "./styles";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
 class Dashboard extends React.Component {
   render() {
@@ -13,7 +15,7 @@ class Dashboard extends React.Component {
         </div>
         <div className="flex y-axis full-width">
           <div className="flex x-axis">
-            <Header />
+            <Header handleLogout={this.props.handleLogout} />
           </div>
           <Container>
             <div className="flex full-height">{this.props.children}</div>
@@ -24,4 +26,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default connect(null, actions)(Dashboard);

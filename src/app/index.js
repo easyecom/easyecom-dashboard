@@ -4,6 +4,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import store from "./store";
 
 import base from "./containers/HOC/Base";
+import NoAuth from "./containers/HOC/NoAuth";
 
 import { initApp } from "../app/actions";
 
@@ -23,7 +24,7 @@ class App extends Component {
           <div className="App">
             <Route path={"/"} exact component={base(Orders)} />
             <Route path={"/Pedido"} exact component={base(OrderDetails)} />
-            <Route path={"/login"} exact component={Login} />
+            <Route path={"/login"} exact component={NoAuth(Login)} />
           </div>
         </Router>
       </Provider>
