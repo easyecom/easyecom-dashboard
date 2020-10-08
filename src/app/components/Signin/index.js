@@ -13,21 +13,42 @@ class Login extends Component {
     email: "",
     password: "",
     rememberPassword: true,
+    erros: {},
   };
-  handleInput = (field, event) =>
+
+  onChangeInput = (field, event) => {
     this.setState({ [field]: event.target.value });
 
-  handleCheckbox = (field) => this.setState({ [field]: !this.state[field] });
+    this.validate();
+  };
+
+  onChangeCheckbox = (field) => this.setState({ [field]: !this.state[field] });
 
   handleLogin() {
     const { email, password, rememberPassword } = this.state;
-    this.props.handleLogin({ email, password, rememberPassword }, () => {
-      alert("aviso");
+
+    if (!this.validate()) return;
+
+    this.props.handleLogin({ email, password, rememberPassword }, (error) => {
+      this.setState({ erros: { ...this.state.erros, form: error } });
     });
   }
 
+  validate() {
+    const { email, password } = this.state;
+
+    const erros = {};
+
+    if (!email) erros.email = "Preencha com seu e-mail";
+    if (!password) erros.password = "Preencha com sua senha";
+
+    this.setState({ erros });
+    console.log(erros);
+    return !(Object.keys(erros).length > 0);
+  }
+
   render() {
-    const { email, password, rememberPassword } = this.state;
+    const { email, password, rememberPassword, erros } = this.state;
     return (
       <Container>
         <div className="box">
@@ -38,24 +59,24 @@ class Login extends Component {
             </p>
           </div>
           <Input
-            // label="E-mail"
             placeholder={"Email"}
+            error={erros.email}
             value={email}
             type="email"
-            onChange={(event) => this.handleInput("email", event)}
+            onChange={(event) => this.onChangeInput("email", event)}
           />
           <Input
-            // label="Password"
             placeholder={"Password"}
+            error={erros.password}
             value={password}
             type="password"
-            onChange={(event) => this.handleInput("password", event)}
+            onChange={(event) => this.onChangeInput("password", event)}
           />
           <div className="checkBox">
             <div>
               <Checkbox
                 value={rememberPassword}
-                onChange={() => this.handleCheckbox("rememberPassword")}
+                onChange={() => this.onChangeCheckbox("rememberPassword")}
                 label="Lembrar senha?"
               />
             </div>

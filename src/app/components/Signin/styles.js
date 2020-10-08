@@ -46,6 +46,8 @@ export const Container = styled.div`
       background: #fff;
       padding-left: 10px;
     }
+
+    margin-top: 5px;
   }
 
   button {
