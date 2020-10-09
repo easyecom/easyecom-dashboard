@@ -45,7 +45,6 @@ class Login extends Component {
     if (!password) erros.password = "Preencha com sua senha";
 
     this.setState({ erros });
-    console.log(erros);
     return !(Object.keys(erros).length > 0);
   }
 
@@ -92,7 +91,6 @@ class Login extends Component {
             <a href={`${api}/recovery`}>
               <small>Esqueceu sua senha?</small>
             </a>
-            {/* <Link to="/recuperar-senha">Esqueceu sua senha?</Link> */}
           </div>
         </div>
       </Container>
