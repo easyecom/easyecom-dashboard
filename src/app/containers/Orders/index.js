@@ -9,15 +9,41 @@ import Pagination from "../../components/Pagination/Simple";
 
 import { Container } from "./styles";
 
+import { connect } from "react-redux";
+import * as actions from "../../actions/orders";
+
 class Orders extends Component {
   state = {
     search: "",
     atual: 0,
+    limit: 30,
   };
+
+  getOrder() {
+    const { atual, limit } = this.state;
+
+    const { user } = this.props;
+    if (!user) return console.log("not have user");
+
+    const { store_id } = user;
+    this.props.getOrders(atual, limit, store_id);
+  }
+
+  componentDidMount() {
+    this.getOrder();
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("this.props");
+    if (!this.props.user && prevProps.user) this.getOrder();
+  }
 
   onChangeSearch = (event) => this.setState({ search: event.target.value });
 
-  changeAtualNumber = (atual) => this.setState({ atual });
+  changeAtualNumber = (atual) =>
+    this.setState({ atual }, () => {
+      this.getOrder();
+    });
 
   render() {
     const { search } = this.state;
@@ -31,88 +57,6 @@ class Orders extends Component {
         STATUS: "aguardando pagamento",
         buttonDetails: "/Pedido",
       },
-      {
-        "ID PEDIDO": 76567976598,
-        CLIENTE: "Joaquina",
-        TOTAL: "R$ 240.0",
-        DATA: moment().toISOString(),
-        STATUS: "pronto para manuseio",
-        buttonDetails: "/Pedido",
-      },
-      {
-        "ID PEDIDO": 76567976598,
-        CLIENTE: "Tobias",
-        TOTAL: "R$ 100.90",
-        DATA: moment().toISOString(),
-        STATUS: "aguardando pagamento",
-        buttonDetails: "/Pedido",
-      },
-      {
-        "ID PEDIDO": 76567976598,
-        CLIENTE: "Malaquias",
-        TOTAL: "R$ 77.90",
-        DATA: moment().toISOString(),
-        STATUS: "aguardando pagamento",
-        buttonDetails: "/Pedido",
-      },
-      {
-        "ID PEDIDO": 76567976598,
-        CLIENTE: "Joaquina",
-        TOTAL: "R$ 240.0",
-        DATA: moment().toISOString(),
-        STATUS: "pronto para manuseio",
-        buttonDetails: "/Pedido",
-      },
-      {
-        "ID PEDIDO": 76567976598,
-        CLIENTE: "Tobias",
-        TOTAL: "R$ 100.90",
-        DATA: moment().toISOString(),
-        STATUS: "aguardando pagamento",
-        buttonDetails: "/Pedido",
-      },
-      // {
-      //   CLIENTE: "Malaquias",
-      //   TOTAL: "R$ 77.90",
-      //   DATA: moment().toISOString(),
-      //   STATUS: "aguardando pagamento",
-      //   buttonDetails: "/pedido/34654456",
-      // },
-      // {
-      //   CLIENTE: "Joaquina",
-      //   TOTAL: "R$ 240.0",
-      //   DATA: moment().toISOString(),
-      //   STATUS: "pronto para manuseio",
-      //   buttonDetails: "/pedido/34654457",
-      // },
-      // {
-      //   CLIENTE: "Tobias",
-      //   TOTAL: "R$ 100.90",
-      //   DATA: moment().toISOString(),
-      //   STATUS: "aguardando pagamento",
-      //   buttonDetails: "/pedido/34654458",
-      // },
-      // {
-      //   CLIENTE: "Malaquias",
-      //   TOTAL: "R$ 77.90",
-      //   DATA: moment().toISOString(),
-      //   STATUS: "aguardando pagamento",
-      //   buttonDetails: "/pedido/34654456",
-      // },
-      // {
-      //   CLIENTE: "Joaquina",
-      //   TOTAL: "R$ 240.0",
-      //   DATA: moment().toISOString(),
-      //   STATUS: "pronto para manuseio",
-      //   buttonDetails: "/pedido/34654457",
-      // },
-      // {
-      //   CLIENTE: "Tobias",
-      //   TOTAL: "R$ 100.90",
-      //   DATA: moment().toISOString(),
-      //   STATUS: "aguardando pagamento",
-      //   buttonDetails: "/pedido/34654458",
-      // }
     ];
 
     return (
@@ -135,7 +79,7 @@ class Orders extends Component {
             <Pagination
               atual={this.state.atual}
               total={120}
-              limit={20}
+              limit={this.state.limit}
               onClick={(atualNumberPage) =>
                 this.changeAtualNumber(atualNumberPage)
               }
@@ -147,4 +91,9 @@ class Orders extends Component {
   }
 }
 
-export default Orders;
+const mapStateToProps = (state) => ({
+  order: state.order.orders,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, actions)(Orders);
