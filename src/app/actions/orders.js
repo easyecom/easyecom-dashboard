@@ -8,7 +8,7 @@ export const getOrders = (atual, limit, store_id) => {
   return function (dispatch) {
     axios
       .get(
-        `${api}/stores/${store_id}/ordersAdmin`, //?offset=${atual}&limit=${limit}`,
+        `${api}/stores/${store_id}/ordersAdmin?offset=${atual}&limit=${limit}`,
         getHeaders()
       )
       .then((response) => {

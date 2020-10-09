@@ -1,5 +1,5 @@
 export const saveToken = (user, rememberPassword) => {
-  if (!user || !user.token) return console.log("token nao encontrado");
+  if (!user || !user.token) return null;
   const [token1, token2, token3] = user.token.split(".");
   localStorage.setItem("token1", token1);
   localStorage.setItem("token2", token2);

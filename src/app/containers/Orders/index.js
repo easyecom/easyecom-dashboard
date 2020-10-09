@@ -23,19 +23,21 @@ class Orders extends Component {
     const { atual, limit } = this.state;
 
     const { user } = this.props;
-    if (!user) return console.log("not have user");
+    if (!user) return null;
 
     const { store_id } = user;
     this.props.getOrders(atual, limit, store_id);
+    console.log("1");
   }
 
   componentDidMount() {
     this.getOrder();
+    console.log("3");
   }
 
-  componentDidUpdate(prevProps) {
-    console.log("this.props");
-    if (!this.props.user && prevProps.user) this.getOrder();
+  componentDidUpdate(nextProps) {
+    console.log("5");
+    if (!this.props.user || nextProps.user) this.getOrder();
   }
 
   onChangeSearch = (event) => this.setState({ search: event.target.value });
@@ -47,17 +49,20 @@ class Orders extends Component {
 
   render() {
     const { search } = this.state;
+    const { orders } = this.props;
 
-    const datas = [
-      {
+    console.log(orders);
+    const datas = [];
+    (orders || []).forEach((item) => {
+      datas.push({
         "ID PEDIDO": 76567976598,
         CLIENTE: "Malaquias",
         TOTAL: "R$ 77.90",
         DATA: moment().toISOString(),
         STATUS: "aguardando pagamento",
         buttonDetails: "/Pedido",
-      },
-    ];
+      });
+    });
 
     return (
       <Container>
