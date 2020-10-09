@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import store from "./store";
 
 import base from "./containers/HOC/Base";
@@ -25,6 +27,7 @@ class App extends Component {
             <Route path={"/"} exact component={base(Orders)} />
             <Route path={"/Pedido"} exact component={base(OrderDetails)} />
             <Route path={"/login"} exact component={NoAuth(Login)} />
+            <ToastContainer autoClose={5000} />
           </div>
         </Router>
       </Provider>

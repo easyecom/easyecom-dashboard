@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { toast } from "react-toastify";
+
 import Input from "../Inputs/Simple";
 import Checkbox from "../Inputs/Checkbox";
 import Button from "../Button/Simple";
@@ -30,7 +32,7 @@ class Login extends Component {
     if (!this.validate()) return;
 
     this.props.handleLogin({ email, password, rememberPassword }, (error) => {
-      this.setState({ erros: { ...this.state.erros, form: error } });
+      toast.error(error.message);
     });
   }
 

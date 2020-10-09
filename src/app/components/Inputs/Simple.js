@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 
-const InputSimple = ({ type, label, value, onChange, placeholder, error }) => (
+const InputSimple = ({ type, value, onChange, placeholder, error }) => (
   <Container>
     {error && <small className="small-danger">{error}</small>}
     <div className="Input-simples">

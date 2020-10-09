@@ -1,4 +1,5 @@
 import axios from "axios";
+// import _ from "lodash";
 
 import { LOGIN_USER, LOGOUT_USER } from "./types";
 
@@ -50,12 +51,34 @@ export const handleLogin = (
       .post(`${api}/session`, { email, password })
       .then((response) => {
         saveToken(response.data.user, rememberPassword);
+
         dispatch({ type: LOGIN_USER, payload: response.data });
       })
-      .catch((error) => {
-        console.log(error, error.response);
-      });
+      .catch((err) => callback(errorHandling(err)));
   };
+};
+
+const errorHandling = (error) => {
+  if (!error.response || !error.response.data) {
+    return { status: 500, message: "Erro no servidor. Tente novamente!" };
+  }
+  if (error.response.data.message === "user does not exist") {
+    return {
+      status: 401,
+      message: "Usuario não encontrado",
+    };
+  }
+
+  if (error.response.status === 401) {
+    return {
+      status: 401,
+      message: "Usuario ou senha incorreta",
+    };
+  }
+
+  if (error.response.data.message) {
+    return console.log(error.response);
+  }
 };
 
 export const getUser = () => {
@@ -66,13 +89,7 @@ export const getUser = () => {
         saveToken(response.data.user, true);
         dispatch({ type: LOGIN_USER, payload: response.data });
       })
-      .catch((error) => {
-        console.log(
-          error,
-          error.response,
-          error.response && error.response.data
-        );
-      });
+      .catch(errorHandling);
   };
 };
 
