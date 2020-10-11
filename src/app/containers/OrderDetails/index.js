@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import OrderDetails from "./OrderDetails/index";
-import DeliveryDetails from "./DeliveryDetails/index";
-import PaymentDetails from "./PaymentDetails/index";
+import OrderDetails from "./Order/index";
+import DeliveryDetails from "./Delivery/index";
+import PaymentDetails from "./Payment/index";
 import { Container } from "./styles";
 
 export default class Order extends Component {

@@ -11,7 +11,7 @@ import NoAuth from "./containers/HOC/NoAuth";
 import { initApp } from "../app/actions";
 
 import Orders from "./containers/Orders";
-import OrderDetails from "./containers/Order";
+import OrderDetails from "./containers/OrderDetails";
 import Login from "./containers/Login";
 
 class App extends Component {

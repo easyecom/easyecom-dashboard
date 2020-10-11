@@ -16,7 +16,7 @@ class Orders extends Component {
   state = {
     search: "",
     atual: 0,
-    limit: 4,
+    limit: 10,
   };
 
   getOrder() {
