@@ -9,27 +9,27 @@ const items = [
     title: "Pedidos",
   },
   {
-    route: "/users",
+    route: "/Clientes",
     icone: <i className="fas fa-users" />,
     title: "Clientes",
   },
   {
-    route: "/categories",
+    route: "/Categorias",
     icone: <i className="fas fa-clone" />,
     title: "Categorias",
   },
   {
-    route: "/brands",
+    route: "/Marcas",
     icone: <i className="fas fa-bookmark" />,
     title: "Marcas",
   },
   {
-    route: "/products",
+    route: "/Produtos",
     icone: <i className="fas fa-boxes" />,
     title: "Produtos",
   },
   {
-    route: "/config",
+    route: "/Config",
     icone: <i className="fas fa-cog" />,
     title: "Config",
   },

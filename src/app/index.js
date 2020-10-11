@@ -12,7 +12,13 @@ import { initApp } from "../app/actions";
 
 import Orders from "./containers/Orders";
 import OrderDetails from "./containers/OrderDetails";
+import Clients from "./containers/Clients";
 import Login from "./containers/Login";
+import Categories from "./containers/Categories";
+import Brands from "./containers/Brands";
+import Products from "./containers/Products";
+import Config from "./containers/Config";
+import Perfil from "./containers/Perfil";
 
 class App extends Component {
   componentDidMount() {
@@ -26,6 +32,12 @@ class App extends Component {
           <div className="App">
             <Route path={"/"} exact component={base(Orders)} />
             <Route path={"/Pedido"} exact component={base(OrderDetails)} />
+            <Route path={"/Clientes"} exact component={base(Clients)} />
+            <Route path={"/Categorias"} exact component={base(Categories)} />
+            <Route path={"/Marcas"} exact component={base(Brands)} />
+            <Route path={"/Produtos"} exact component={base(Products)} />
+            <Route path={"/Config"} exact component={base(Config)} />
+            <Route path={"/Perfil"} exact component={base(Perfil)} />
             <Route path={"/login"} exact component={NoAuth(Login)} />
             <ToastContainer autoClose={5000} />
           </div>
