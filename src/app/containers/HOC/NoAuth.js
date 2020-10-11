@@ -9,7 +9,7 @@ const NoAuth = (Component) => {
     componentDidMount() {
       const { getUser, authorized, history, user } = this.props;
       getUser();
-      if (authorized && user.permission.includes("admin")) history.replace("/");
+      if (authorized && user && user.permission.includes("admin")) history.replace("/");
     }
 
     componentDidUpdate(prevProps) {

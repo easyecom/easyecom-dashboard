@@ -1,43 +1,47 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import jwt_decode from "jwt-decode";
 import moment from "moment";
 
 import Title from "../../components/Text/Title.js";
-
 import Search from "../../components/Inputs/Search/index";
 import Table from "../../components/Table/Simple";
 import Pagination from "../../components/Pagination/Simple";
 
 import { Container } from "./styles";
-
-import { connect } from "react-redux";
+import { getToken } from "../../actions/localStorage";
 import * as actions from "../../actions/orders";
 
 class Orders extends Component {
   state = {
     search: "",
     atual: 0,
-    limit: 30,
+    limit: 4,
   };
 
   getOrder() {
-    const { atual, limit } = this.state;
+    try {
+      const { atual, limit } = this.state;
+      const { user } = this.props;
 
-    const { user } = this.props;
-    if (!user) return null;
+      if (!user) {
+        const token = getToken();
+        const { payload } = jwt_decode(token);
 
-    const { store_id } = user;
-    this.props.getOrders(atual, limit, store_id);
-    console.log("1");
+        return this.props.getOrders(atual, limit, payload.store_id);
+      }
+
+      const { store_id } = user;
+
+      this.props.getOrders(atual, limit, store_id);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   componentDidMount() {
+    // debugger;
     this.getOrder();
-    console.log("3");
-  }
-
-  componentDidUpdate(nextProps) {
-    console.log("5");
-    if (!this.props.user || nextProps.user) this.getOrder();
   }
 
   onChangeSearch = (event) => this.setState({ search: event.target.value });
@@ -50,17 +54,16 @@ class Orders extends Component {
   render() {
     const { search } = this.state;
     const { orders } = this.props;
-
-    console.log(orders);
     const datas = [];
+
     (orders || []).forEach((item) => {
       datas.push({
-        "ID PEDIDO": 76567976598,
-        CLIENTE: "Malaquias",
-        TOTAL: "R$ 77.90",
-        DATA: moment().toISOString(),
+        "ID PEDIDO": item.Id,
+        CLIENTE: item.customer.userName,
+        TOTAL: "R$ 50,00",
+        DATA: moment(item.created_at).format("DD/MM/YYYY"),
         STATUS: "aguardando pagamento",
-        buttonDetails: "/Pedido",
+        buttonDetails: `/Pedido/${item.Id}`,
       });
     });
 
@@ -83,7 +86,7 @@ class Orders extends Component {
             />
             <Pagination
               atual={this.state.atual}
-              total={120}
+              total={10}
               limit={this.state.limit}
               onClick={(atualNumberPage) =>
                 this.changeAtualNumber(atualNumberPage)
@@ -97,7 +100,7 @@ class Orders extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  order: state.order.orders,
+  orders: state.order.orders,
   user: state.auth.user,
 });
 

@@ -12,7 +12,7 @@ const PaginationSimple = ({ total, atual, limit, onClick }) => {
           const atualNumberPage = num * limit;
           return (
             <div
-              className={`Pagination-item ${
+              className={`Pagination-item${
                 atualNumberPage === atual ? "paginate-item-active" : ""
               }`}
               onClick={() => onClick(atualNumberPage)}

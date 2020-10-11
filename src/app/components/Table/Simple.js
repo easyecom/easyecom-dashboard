@@ -22,13 +22,13 @@ const TableSimple = ({ header, datas }) => (
                   {line[item] || ""}
                 </td>
               ))}
-              {line["buttonDetails"] && (
+              {line["buttonDetails"] ? (
                 <td className="button-details">
                   <Link to={line["buttonDetails"]}>
                     <button>DETALHES</button>
                   </Link>
                 </td>
-              )}{" "}
+              ) : null}{" "}
             </tr>
           ))}
         </tbody>

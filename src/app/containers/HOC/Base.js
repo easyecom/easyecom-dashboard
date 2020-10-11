@@ -8,14 +8,13 @@ import * as actions from "../../actions";
 const base = (Component) => {
   class componentBase extends React.Component {
     componentDidMount() {
-      const { getUser, authorized, history, user } = this.props;
+      const { getUser, authorized, history } = this.props;
       getUser();
       if (!authorized) history.replace("/Login");
     }
 
     componentDidUpdate(prevProps) {
       const { authorized, history } = this.props;
-      // console.log(prevProps);
       if (!authorized && prevProps.authorized) history.replace("/Login");
     }
 
