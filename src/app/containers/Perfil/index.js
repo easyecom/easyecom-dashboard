@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from "react";
+import { Container } from "./styles";
 
-// import { Container } from './styles';
-
-function Perfil() {
-  return <div>Olá perfil</div>
+class Perfil extends Component {
+  render() {
+    return (
+      <Container>
+        <h1>Perfil</h1>u
+      </Container>
+    );
+  }
 }
-
 export default Perfil;

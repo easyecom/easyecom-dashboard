@@ -17,3 +17,17 @@ export const getOrders = (page, limit, store_id) => {
       .catch(errorHandling);
   };
 };
+
+// export const getOrders = (dataSearch, page, limit, store_id) => {
+//   return function (dispatch) {
+//     axios
+//       .get(
+//         `${api}/stores/${store_id}/ordersAdmin/search/${dataSearch}?page=${page}&limit=${limit}`,
+//         getHeaders()
+//       )
+//       .then((response) => {
+//         dispatch({ type: GET_ORDERS, payload: response.data });
+//       })
+//       .catch(errorHandling);
+//   };
+// };

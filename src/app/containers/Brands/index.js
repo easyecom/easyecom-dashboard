@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from "react";
+import { Container } from "./styles";
 
-// import { Container } from './styles';
-
-function Brands() {
-  return <div>Olá Marc</div>
+class Brands extends Component {
+  render() {
+    return (
+      <Container>
+        <h1>Brands</h1>
+      </Container>
+    );
+  }
 }
-
 export default Brands;

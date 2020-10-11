@@ -31,7 +31,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <Route path={"/"} exact component={base(Orders)} />
-            <Route path={"/Pedido"} exact component={base(OrderDetails)} />
+            <Route path={"/Pedido/:id"} exact component={base(OrderDetails)} />
             <Route path={"/Clientes"} exact component={base(Clients)} />
             <Route path={"/Categorias"} exact component={base(Categories)} />
             <Route path={"/Marcas"} exact component={base(Brands)} />

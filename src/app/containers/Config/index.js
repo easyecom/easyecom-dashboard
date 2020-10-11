@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from "react";
+import { Container } from "./styles";
 
-// import { Container } from './styles';
-
-function Config() {
-  return <div>Olá configs</div>
+class Config extends Component {
+  render() {
+    return (
+      <Container>
+        <h1>Config</h1>
+      </Container>
+    );
+  }
 }
-
 export default Config;
