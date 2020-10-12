@@ -9,7 +9,7 @@ import Table from "../../components/Table/Simple";
 import Pagination from "../../components/Pagination/Simple";
 
 import { Container } from "./styles";
-import { getToken } from "../../actions/localStorage";
+import { getToken } from "../../actions/helpers/localStorage";
 import * as actions from "../../actions/clients";
 
 class Clients extends Component {

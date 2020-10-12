@@ -1,4 +1,4 @@
-import { GET_CLIENTS } from "../actions/types";
+import { GET_CLIENTS } from "../actions/utils/types";
 
 export default (state = {}, action) => {
   switch (action.type) {

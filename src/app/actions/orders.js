@@ -1,8 +1,9 @@
-import { getHeaders } from "./localStorage";
 import axios from "axios";
+
+import { getHeaders } from "./helpers/localStorage";
 import { api } from "../config/index";
-import { errorHandling } from "./errorHandling";
-import { GET_ORDERS } from "./types";
+import { errorHandling } from "./helpers/errorHandling";
+import { GET_ORDERS } from "./utils/types";
 
 export const getOrders = (page, limit, store_id) => {
   return function (dispatch) {

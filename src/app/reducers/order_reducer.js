@@ -1,4 +1,4 @@
-import { GET_ORDERS } from "../actions/types";
+import { GET_ORDERS } from "../actions/utils/types";
 
 export default (state = {}, action) => {
   switch (action.type) {

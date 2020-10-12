@@ -1,8 +1,9 @@
-import { GET_CATEGORIES } from "./types";
 import axios from "axios";
+
+import { GET_CATEGORIES } from "./utils/types";
 import { api } from "../config/index";
-import { errorHandling } from "./errorHandling";
-import { getHeaders } from "./localStorage";
+import { errorHandling } from "./helpers/errorHandling";
+import { getHeaders } from "./helpers/localStorage";
 
 export const getCategories = (page, limit, store_id) => {
   return function (dispatch) {

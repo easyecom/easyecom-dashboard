@@ -1,12 +1,12 @@
 import axios from "axios";
 // import _ from "lodash";
 
-import { LOGIN_USER, LOGOUT_USER } from "./types";
+import { LOGIN_USER, LOGOUT_USER } from "./utils/types";
 
 import { api } from "../config";
 
-import { saveToken, getHeaders, clearToken } from "./localStorage";
-import { errorHandling } from "./errorHandling";
+import { saveToken, getHeaders, clearToken } from "./helpers/localStorage";
+import { errorHandling } from "./helpers/errorHandling";
 
 export const initApp = () => {
   const rememberPassword = localStorage.getItem("rememberPassword");
