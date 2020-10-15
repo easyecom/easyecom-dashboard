@@ -5,7 +5,7 @@ import { api } from "../config/index";
 import { errorHandling } from "./helpers/errorHandling";
 import { getHeaders } from "./helpers/localStorage";
 
-export const getCategories = (page, limit, store_id) => {
+export const getCategories = (store_id) => {
   return function (dispatch) {
     axios
       .get(`${api}/stores/${store_id}/categories`, getHeaders())

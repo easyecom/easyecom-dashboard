@@ -15,6 +15,7 @@ import OrderDetails from "./containers/OrderDetails";
 import Clients from "./containers/Clients";
 import Login from "./containers/Login";
 import Categories from "./containers/Categories";
+import CategoryNew from "./containers/CategoryNew";
 import Brands from "./containers/Brands";
 import Products from "./containers/Products";
 import Config from "./containers/Config";
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path={"/Pedido/:id"} exact component={base(OrderDetails)} />
             <Route path={"/Clientes"} exact component={base(Clients)} />
             <Route path={"/Categorias"} exact component={base(Categories)} />
+            <Route path={"/Categoria/Nova"} exact component={base(CategoryNew)} />
             <Route path={"/Marcas"} exact component={base(Brands)} />
             <Route path={"/Produtos"} exact component={base(Products)} />
             <Route path={"/Config"} exact component={base(Config)} />
