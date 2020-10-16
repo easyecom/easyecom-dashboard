@@ -16,12 +16,14 @@ export const Container = styled.div`
 
       border: none;
       height: 35px;
-      width: 100px;
+      width: 165px;
       background: #0000cd;
       color: #fff;
       border-radius: 3px;
       font-weight: bold;
       cursor: pointer;
+
+      text-decoration: none;
     }
   }
 `;

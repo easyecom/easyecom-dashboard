@@ -35,8 +35,8 @@ class Categories extends Component {
   renderButtonNew() {
     return (
       <Link className="button" to="/Categoria/Nova">
-        <i className="fas fa-plus"></i>
-        <span>Nova</span>
+        <i className="fas fa-plus" ></i>
+        <span>&nbsp; Nova Categoria</span>
       </Link>
     );
   }
