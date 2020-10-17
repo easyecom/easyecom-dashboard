@@ -18,7 +18,7 @@ export const Container = styled.div`
     color: #3895d3;
   }
   .user-name {
-    margin-right: 20px;
+    margin-right: 5px;
     color: #333
   }
   a {

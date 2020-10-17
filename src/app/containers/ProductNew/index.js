@@ -1,73 +1,141 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 
 import Title from "../../components/Text/Title.js";
-import Table from "../../components/Table/Simple";
+import InputSimple from "../../components/Inputs/Simple";
+import ButtonSimple from "../../components/Button/Simple";
+import SwitchWrapper from "../../components/Inputs/SwitchWrapper/index";
 
-import { Container } from "./styles";
+import { Container, ContainerHead, ContainerInput } from "./styles";
 import { getToken } from "../../actions/helpers/localStorage";
 import * as actions from "../../actions/products";
 
-class ProductNew extends Component {
-  state = {};
+class CategoryNew extends Component {
+  state = {
+    productName: "",
+    description: "",
+    isActive: true,
+    refId: "",
+    products: [],
+    erros: {},
+    warn: null,
+    changeWrapper: false,
+  };
 
-  get() {
+  saveProduct() {
     const { user } = this.props;
+
     if (!user) {
       const token = getToken();
       const { payload } = jwt_decode(token);
 
-      return this.props.get(payload.store_id);
+      return this.props.saveProduct(this.state, payload.store_id, (error) => {
+        this.setState({
+          warn: !error,
+          message: error ? error.message : "Produto adcionada com sucesso",
+        });
+      });
     }
 
     const { store_id } = user;
 
-    this.props.get(store_id);
+    this.props.saveProduct(this.state, store_id);
   }
 
-  componentDidMount() {
-    this.getProducts();
-  }
+  // onChangeWrapper = (field) => this.setState({ [field]: !this.state[field] });
 
-  renderButtonNew() {
+  renderHead() {
+    const { productName } = this.state;
     return (
-      <Link className="button" to="/Produto/Novo">
-        <i className="fas fa-plus"></i>
-        <span>&nbsp; Nova Produto</span>
-      </Link>
+      <ContainerHead>
+        <div className="flex">
+          <div className="flex-1 flex">
+            <Title type="h1" title={"Novo produto"} />
+          </div>
+          <div className="flex-1 flex flex-end">
+            <strong>Produto desativada &nbsp; </strong>{" "}
+            <SwitchWrapper onChange={this.onChangeWrapper} />
+          </div>
+        </div>
+      </ContainerHead>
+    );
+  }
+
+  onChangeInput = (field, value) => this.setState({ [field]: value });
+
+  renderDatas() {
+    const {
+      productName,
+      description,
+      isActive,
+      refId,
+      products,
+      erros,
+    } = this.state;
+    return (
+      <ContainerInput>
+        <div className="card-input">
+          <div>
+            <p>Produto</p>
+            <InputSimple
+              name="productName"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={productName}
+              erros={erros.productName}
+              onChange={(evento) =>
+                this.onChangeInput("productName", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Descrição do produto</p>
+            <InputSimple
+              name="description"
+              label="Description"
+              value={description}
+              erros={erros.description}
+              onChange={(evento) =>
+                this.onChangeInput("description", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Refid</p>
+            <InputSimple
+              name="refId"
+              label="RefId"
+              value={refId}
+              erros={erros.refId}
+              onChange={(evento) =>
+                this.onChangeInput("refId", evento.target.value)
+              }
+            />
+          </div>
+          <div className="btn">
+            <ButtonSimple
+              type="component-button"
+              onClick={() => this.saveProduct()}
+              label="Salvar"
+            />
+          </div>
+        </div>
+      </ContainerInput>
     );
   }
 
   render() {
-    const { products } = this.props;
-    console.log(products, "teste");
-    const datas = [];
-    (products || []).forEach((item) => {
-      datas.push({
-        ID: item.productId,
-        PRODUTO: item.productName,
-        MARCA: item.brandName,
-        VARIACOES: item.variations[0] ? item.variations[0].length : "",
-        PRECO: item.salesPrice,
-        buttonDetails: `/Produto/1`,
-      });
-    });
-
     return (
       <Container>
-        <div className="Products">
-          <div className="Card">
-            <div className="cat-box">
-              <Title type="h1" title="Produtos" className="cat-box-title" />
-              {this.renderButtonNew()}
+        <div className="new-product">
+          <div className="card">
+            {this.renderHead()}
+            <div className="flex x-axis ">
+              {this.renderDatas()}
+              {/* <div className=""></div> */}
             </div>
-            <br />
-            <Table
-              header={["ID", "PRODUTO", "VARIACOES", "MARCA", "PRECO"]}
-              datas={datas}
-            />
           </div>
         </div>
       </Container>
@@ -76,8 +144,8 @@ class ProductNew extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  products: state.product.products,
+  products: state.category.products,
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, actions)(ProductNew);
+export default connect(mapStateToProps, actions)(CategoryNew);

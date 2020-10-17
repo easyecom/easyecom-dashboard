@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "./styles";
+import jwt_decode from "jwt-decode";
+import { getToken } from "../../../actions/helpers/localStorage";
 
 const Header = ({ handleLogout }) => {
+  const [name, setName] = useState(" ");
+
+  useEffect(() => {
+    try {
+      const token = getToken();
+
+      const { payload } = jwt_decode(token);
+
+      setName(payload.userName);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
   return (
     <Container>
       <div className="flex x-axis full-width header-box">
@@ -9,10 +25,9 @@ const Header = ({ handleLogout }) => {
           <a href="/" className="text see-store-header">
             Ver loja
           </a>
-          {/* <i className="fas fa-store" /> */}
         </div>
         <div className="flex-1 flex flex-end">
-          <p className="user-name">Olá Jeremias</p>
+          <p className="user-name">Olá {name} | </p>
           <div className="logout-store-header">
             <a href="/" onClick={() => handleLogout()} className="text">
               Sair
