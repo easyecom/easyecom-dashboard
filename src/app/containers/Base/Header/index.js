@@ -12,7 +12,9 @@ const Header = ({ handleLogout }) => {
 
       const { payload } = jwt_decode(token);
 
-      setName(payload.userName);
+      const name = payload.userName.split(" ").slice(0, 1);
+
+      setName(name);
     } catch (err) {
       console.log(err);
     }
