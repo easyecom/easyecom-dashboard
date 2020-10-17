@@ -15,7 +15,7 @@ const NoAuth = (Component) => {
     componentDidUpdate(prevProps) {
       const { authorized, history } = this.props;
       if (!prevProps.authorized && authorized) {
-        history.replace("/");
+        history.replace("/Marca/Nova");
       }
     }
 

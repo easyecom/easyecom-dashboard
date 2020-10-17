@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 
@@ -38,12 +39,20 @@ class Brands extends Component {
     }
   }
 
+  renderButtonNew() {
+    return (
+      <Link className="button" to="/Marca/Nova">
+        <i className="fas fa-plus"></i>
+        <span>&nbsp; Nova Marca</span>
+      </Link>
+    );
+  }
+
   componentDidMount() {
     this.getBrands();
   }
 
   render() {
-    const { search } = this.state;
     const { brands } = this.props;
     const datas = [];
 
@@ -52,7 +61,9 @@ class Brands extends Component {
         ID: item.brandId,
         MARCA: item.brandName,
         PRODUTOS:
-          item.products && item.products[0] ? item.products[0] : item.products,
+          item.products && item.products[0]
+            ? item.products.length
+            : item.products,
         ATIVO: item.isActive === true ? "sim" : "não",
         REFID: item.refId ? item.refId : "-",
         // buttonDetails: `/Brands/1`,
@@ -63,14 +74,10 @@ class Brands extends Component {
       <Container>
         <div className="brands">
           <div className="Card">
-            <Title type="h1" title="Marcas" />
-            <br />
-            <Search
-              value={search}
-              placeholder={"Buscar pelo nome da marca"}
-              onChange={(event) => this.onChangeSearch(event)}
-              onClick={() => alert("Pesquisar")}
-            />
+            <div className="cat-box">
+              <Title type="h1" title="Marcas" />
+              {this.renderButtonNew()}
+            </div>
             <br />
             <Table
               header={["ID", "MARCA", "PRODUTOS", "ATIVO", "REFID"]}

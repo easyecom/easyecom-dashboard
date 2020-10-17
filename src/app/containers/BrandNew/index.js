@@ -9,11 +9,11 @@ import SwitchWrapper from "../../components/Inputs/SwitchWrapper/index";
 
 import { Container, ContainerHead, ContainerInput } from "./styles";
 import { getToken } from "../../actions/helpers/localStorage";
-import * as actions from "../../actions/categories";
+import * as actions from "../../actions/brands";
 
-class CategoryNew extends Component {
+class BrandNew extends Component {
   state = {
-    categoryName: "",
+    brandName: "",
     description: "",
     isActive: true,
     refId: "",
@@ -23,38 +23,38 @@ class CategoryNew extends Component {
     changeWrapper: false,
   };
 
-  saveCategory() {
+  saveBrand() {
     const { user } = this.props;
 
     if (!user) {
       const token = getToken();
       const { payload } = jwt_decode(token);
 
-      return this.props.saveCategory(this.state, payload.store_id, (error) => {
+      return this.props.saveBrand(this.state, payload.store_id, (error) => {
         this.setState({
           warn: !error,
-          message: error ? error.message : "Categoria adcionada com sucesso",
+          message: error ? error.message : "Marca adcionada com sucesso",
         });
       });
     }
 
     const { store_id } = user;
 
-    this.props.saveCategory(this.state, store_id);
+    this.props.saveBrand(this.state, store_id);
   }
 
   // onChangeWrapper = (field) => this.setState({ [field]: !this.state[field] });
 
   renderHead() {
-    const { categoryName } = this.state;
+    const { brandName } = this.state;
     return (
       <ContainerHead>
         <div className="flex">
           <div className="flex-1 flex">
-            <Title type="h1" title={"Nova Categoria"} />
+            <Title type="h1" title={"Nova Marca"} />
           </div>
           <div className="flex-1 flex flex-end">
-            <strong>Categoria desativada &nbsp; </strong>{" "}
+            <strong>Marca desativada &nbsp; </strong>{" "}
             <SwitchWrapper onChange={this.onChangeWrapper} />
           </div>
         </div>
@@ -66,7 +66,7 @@ class CategoryNew extends Component {
 
   renderDatas() {
     const {
-      categoryName,
+      brandName,
       description,
       isActive,
       refId,
@@ -77,21 +77,21 @@ class CategoryNew extends Component {
       <ContainerInput>
         <div className="card-input">
           <div>
-            <p>Categoria</p>
+            <p>Marca</p>
             <InputSimple
-              name="categoryName"
+              name="brandName"
               label="Name"
               // placeholder={placeholder}
               type=""
-              value={categoryName}
-              erros={erros.categoryName}
+              value={brandName}
+              erros={erros.brandName}
               onChange={(evento) =>
-                this.onChangeInput("categoryName", evento.target.value)
+                this.onChangeInput("brandName", evento.target.value)
               }
             />
           </div>
           <div>
-            <p>Descrição da categoria</p>
+            <p>Descrição da marca</p>
             <InputSimple
               name="description"
               label="Description"
@@ -117,7 +117,7 @@ class CategoryNew extends Component {
           <div className="btn">
             <ButtonSimple
               type="component-button"
-              onClick={() => this.saveCategory()}
+              onClick={() => this.saveBrand()}
               label="Salvar"
             />
           </div>
@@ -129,7 +129,7 @@ class CategoryNew extends Component {
   render() {
     return (
       <Container>
-        <div className="new-category">
+        <div className="new-brand">
           <div className="card">
             {this.renderHead()}
             <div className="flex x-axis ">
@@ -144,8 +144,8 @@ class CategoryNew extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  categories: state.category.categories,
+  brands: state.brand.brands,
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, actions)(CategoryNew);
+export default connect(mapStateToProps, actions)(BrandNew);

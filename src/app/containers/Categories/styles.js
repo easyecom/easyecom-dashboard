@@ -17,7 +17,7 @@ export const Container = styled.div`
       border: none;
       height: 35px;
       width: 165px;
-      background: #0000cd;
+      background: #81b71a;
       color: #fff;
       border-radius: 3px;
       font-weight: bold;

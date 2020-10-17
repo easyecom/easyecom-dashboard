@@ -49,7 +49,7 @@ class Categories extends Component {
       datas.push({
         ID: item.categoryId,
         CATEGORIA: item.categoryName,
-        PRODUTOS: item.products[0],
+        PRODUTOS: item.products[0] ? item.products.length : "",
         ATIVO: item.isActive === true ? "sim" : "não",
         REFID: item.refId ? item.refId : "-",
         // buttonDetails: `/Cliente/1`,

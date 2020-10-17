@@ -17,6 +17,7 @@ import Login from "./containers/Login";
 import Categories from "./containers/Categories";
 import CategoryNew from "./containers/CategoryNew";
 import Brands from "./containers/Brands";
+import BrandNew from './containers/BrandNew'
 import Products from "./containers/Products";
 import Config from "./containers/Config";
 import Perfil from "./containers/Perfil";
@@ -37,6 +38,7 @@ class App extends Component {
             <Route path={"/Categorias"} exact component={base(Categories)} />
             <Route path={"/Categoria/Nova"} exact component={base(CategoryNew)} />
             <Route path={"/Marcas"} exact component={base(Brands)} />
+            <Route path={"/Marca/Nova"} exact component={base(BrandNew)} />
             <Route path={"/Produtos"} exact component={base(Products)} />
             <Route path={"/Config"} exact component={base(Config)} />
             <Route path={"/Perfil"} exact component={base(Perfil)} />

@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   background: #d3d3d3;
 
-  height: 100vh;
+  height: 100%;
 
   .Login {
     display: flex;
