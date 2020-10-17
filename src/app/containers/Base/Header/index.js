@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { getToken } from "../../../actions/helpers/localStorage";
 
 const Header = ({ handleLogout }) => {
-  const [name, setName] = useState(" ");
+  const [name, setName] = useState("");
 
   useEffect(() => {
     try {
@@ -18,7 +18,7 @@ const Header = ({ handleLogout }) => {
     } catch (err) {
       console.log(err);
     }
-  });
+  }, []);
 
   return (
     <Container>
