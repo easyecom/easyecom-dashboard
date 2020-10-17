@@ -66,7 +66,7 @@ class Brands extends Component {
             : item.products,
         ATIVO: item.isActive === true ? "sim" : "não",
         REFID: item.refId ? item.refId : "-",
-        // buttonDetails: `/Brands/1`,
+        buttonDetails: `/Brand/1`,
       });
     });
 

@@ -17,6 +17,10 @@ export const Container = styled.div`
   .fa-store {
     color: #3895d3;
   }
+  .user-name {
+    margin-right: 20px;
+    color: #333
+  }
   a {
     text-decoration: none;
   }

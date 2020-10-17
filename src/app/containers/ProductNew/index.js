@@ -8,64 +8,64 @@ import Table from "../../components/Table/Simple";
 
 import { Container } from "./styles";
 import { getToken } from "../../actions/helpers/localStorage";
-import * as actions from "../../actions/categories";
+import * as actions from "../../actions/products";
 
-class Categories extends Component {
+class ProductNew extends Component {
   state = {};
 
-  getCategories() {
+  get() {
     const { user } = this.props;
-
     if (!user) {
       const token = getToken();
       const { payload } = jwt_decode(token);
 
-      return this.props.getCategories(payload.store_id);
+      return this.props.get(payload.store_id);
     }
 
     const { store_id } = user;
 
-    this.props.getCategories(store_id);
+    this.props.get(store_id);
   }
 
   componentDidMount() {
-    this.getCategories();
+    this.getProducts();
   }
 
   renderButtonNew() {
     return (
-      <Link className="button" to="/Categoria/Nova">
-        <i className="fas fa-plus" ></i>
-        <span>&nbsp; Nova Categoria</span>
+      <Link className="button" to="/Produto/Novo">
+        <i className="fas fa-plus"></i>
+        <span>&nbsp; Nova Produto</span>
       </Link>
     );
   }
 
   render() {
-    const { categories } = this.props;
+    const { products } = this.props;
+    console.log(products, "teste");
     const datas = [];
-    (categories || []).forEach((item) => {
+    (products || []).forEach((item) => {
       datas.push({
-        ID: item.categoryId,
-        CATEGORIA: item.categoryName,
-        PRODUTOS: item.products[0] ? item.products.length : "",
-        ATIVO: item.isActive === true ? "sim" : "não",
-        REFID: item.refId ? item.refId : "-",
-        buttonDetails: `/Category/1`,
+        ID: item.productId,
+        PRODUTO: item.productName,
+        MARCA: item.brandName,
+        VARIACOES: item.variations[0] ? item.variations[0].length : "",
+        PRECO: item.salesPrice,
+        buttonDetails: `/Produto/1`,
       });
     });
 
     return (
       <Container>
-        <div className="Categories">
+        <div className="Products">
           <div className="Card">
             <div className="cat-box">
-              <Title type="h1" title="Categorias" className="cat-box-title" />
+              <Title type="h1" title="Produtos" className="cat-box-title" />
               {this.renderButtonNew()}
             </div>
             <br />
             <Table
-              header={["ID", "CATEGORIA", "PRODUTOS", "ATIVO", "REFID"]}
+              header={["ID", "PRODUTO", "VARIACOES", "MARCA", "PRECO"]}
               datas={datas}
             />
           </div>
@@ -76,8 +76,8 @@ class Categories extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  categories: state.category.categories,
+  products: state.product.products,
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, actions)(Categories);
+export default connect(mapStateToProps, actions)(ProductNew);

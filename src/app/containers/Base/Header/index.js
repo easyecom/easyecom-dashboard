@@ -11,11 +11,14 @@ const Header = ({ handleLogout }) => {
           </a>
           {/* <i className="fas fa-store" /> */}
         </div>
-        <div className="flex-1 flex flex-end logout-store-header">
-          <a href="/" onClick={() => handleLogout()} className="text">
-            Sair
-          </a>
-          <i className="fas fa-power-off" />
+        <div className="flex-1 flex flex-end">
+          <p className="user-name">Olá Jeremias</p>
+          <div className="logout-store-header">
+            <a href="/" onClick={() => handleLogout()} className="text">
+              Sair
+            </a>
+            <i className="fas fa-power-off" />
+          </div>
         </div>
       </div>
       {/* <hr color="#cc8400" size="1" width="50%" text-align="left"/> */}
