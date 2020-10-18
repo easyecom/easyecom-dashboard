@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Title from "../../../components/Text/Title";
 
 import ButtonSimple from "../../../components/Button/Simple";
@@ -6,13 +7,22 @@ import TableSimple from "../../../components/Table/Simple";
 import { DataText } from "../../../components/Text/Datas/index";
 import { Header, Client, Cart, Delivery, Payment, Container } from "./styles";
 
-export default class OrderDetails extends Component {
+import jwt_decode from "jwt-decode";
+import { connect } from "react-redux";
+import { getToken } from "../../../actions/helpers/localStorage";
+import * as actions from "../../../actions/orders";
+
+class OrderDetails extends Component {
   renderHeader() {
+    if (!this.props.order) return null;
+    const { order } = this.props;
+    // console.log(order);
+
     return (
       <Header>
         <div className="container flex flex-start ">
           <div className="order-details-title">
-            <Title type="h2" title="Pedido - 76567976598" />
+            <Title type="h2" title={`Pedido - ${order.Id}`} />
           </div>
           <div className="button-cancel">
             <ButtonSimple
@@ -27,16 +37,33 @@ export default class OrderDetails extends Component {
   }
 
   renderClientData() {
+    if (!this.props.order) return null;
+    const { customer } = this.props.order;
+    console.log(customer);
     return (
       <Container>
         <Client>
           <div>
             <div>
               <Title type="h4" title="DADOS DO CLIENTE" />
-              <DataText className="data-text" keys="Nome" value="cliente 1" />
-              <DataText keys="CPF" value="99999999999" />
-              <DataText keys="Telefone" value="11999999999" />
-              <DataText keys="Data de nascimento" value="09/09/1999" />
+              <DataText
+                className="data-text"
+                keys="Nome"
+                value={`${customer.userName}`}
+              />
+              <DataText
+                keys="Email"
+                value={`${customer.email ? customer.email : ""}`}
+              />
+              <DataText keys="CPF" value={`${customer.cpf}`} />
+              <DataText
+                keys="Telefone"
+                value={`${customer.phone ? customer.phone : ""}`}
+              />
+              <DataText
+                keys="Data de nascimento"
+                value={`${customer.dateOfBirth}`}
+              />
             </div>
           </div>
         </Client>
@@ -44,11 +71,36 @@ export default class OrderDetails extends Component {
           <div>
             <div>
               <Title type="h4" title="DADOS DE ENTREGA" />
-              <DataText keys="Endereço" value="Rua Diomar Ackel 999" />
-              <DataText keys="Bairro" value="Pimentas" />
-              <DataText keys="Cidade" value="Guarulhos" />
-              <DataText keys="Estado" value="São Paulo" />
-              <DataText keys="CEP" value="07273-491" />
+              <DataText
+                keys="Endereço"
+                value={`${
+                  customer.address.street ? customer.address.street : ""
+                }`}
+              />
+              <DataText
+                keys="Bairro"
+                value={`${
+                  customer.address.neighborhood
+                    ? customer.address.neighborhood
+                    : ""
+                }`}
+              />
+              <DataText
+                keys="Cidade"
+                value={`${customer.address.city ? customer.address.city : ""}`}
+              />
+              <DataText
+                keys="Estado"
+                value={`${
+                  customer.address.state ? customer.address.state : ""
+                }`}
+              />
+              <DataText
+                keys="CEP"
+                value={`${
+                  customer.address.zipcode ? customer.address.zipcode : ""
+                }`}
+              />
             </div>
           </div>
         </Delivery>
@@ -57,20 +109,22 @@ export default class OrderDetails extends Component {
   }
 
   renderCartData() {
-    const datas = [
-      {
-        Produto: "Vans old school",
-        "Preço Und": "R$ 270,00",
-        Quantidade: "1",
-        "Preço total": "R$ 280,00",
-      },
-      {
-        Produto: "Chinelo Havaianas",
-        "Preço Und": "R$ 60,00",
-        Quantidade: "1",
-        "Preço total": "R$ 60,00",
-      },
-    ];
+    if (!this.props.order) return null;
+    const { items } = this.props.order;
+
+    let datas = [];
+
+    (items || []).forEach((item) => {
+      const priceTotal = item.salesPrice * item.amount;
+
+      datas.push({
+        Produto: item.name,
+        Quantidade: item.amount,
+        "Preço Und": item.salesPrice,
+        "Preço total": parseFloat(priceTotal).toFixed(2),
+        buttonDetails: `/Pedido/${item.Id}`,
+      });
+    });
 
     return (
       <Cart>
@@ -78,7 +132,7 @@ export default class OrderDetails extends Component {
           <div>
             <Title type="h4" title="CARRINHO" />
             <TableSimple
-              header={["Produto", "Preço Und", "Quantidade", "Preço total"]}
+              header={["Produto", "Quantidade", "Preço Und", "Preço total"]}
               datas={datas}
             />
           </div>
@@ -103,6 +157,21 @@ export default class OrderDetails extends Component {
     );
   }
 
+  getOrder() {
+    try {
+      const token = getToken();
+      const { payload } = jwt_decode(token);
+
+      return this.props.getOrder(payload.store_id);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  componentDidMount() {
+    this.getOrder();
+  }
+
   render() {
     return (
       <div>
@@ -115,3 +184,10 @@ export default class OrderDetails extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  order: state.order.order,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, actions)(OrderDetails);

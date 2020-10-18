@@ -8,7 +8,7 @@ import { errorHandling } from "./helpers/errorHandling";
 export const getBrands = (store_id) => {
   return function (dispatch) {
     axios
-      .get(`${api}/stores/2/brands`, getHeaders())
+      .get(`${api}/stores/${store_id}/brands`, getHeaders())
       .then((response) => {
         // console.log(response);
         dispatch({ type: GET_BRANDS, payload: response.data });
@@ -31,9 +31,9 @@ export const saveBrand = (brand, store_id, cb) => {
         },
         getHeaders()
       )
-      .then((response) => {
+      .then(({ data }) => {
         //   console.log(response)
-        dispatch({ type: GET_BRAND, payload: response.data });
+        dispatch({ type: GET_BRAND, payload: data });
         cb(null);
       })
       .catch((err) => cb(errorHandling(err)));

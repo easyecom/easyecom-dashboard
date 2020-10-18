@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 import Title from "../../components/Text/Title.js";
 import InputSimple from "../../components/Inputs/Simple";
@@ -33,7 +34,9 @@ class CategoryNew extends Component {
       return this.props.saveCategory(this.state, payload.store_id, (error) => {
         this.setState({
           warn: !error,
-          message: error ? error.message : "Categoria adcionada com sucesso",
+          message: error
+            ? toast.error(error.message)
+            : toast.success("Categoria adcionada com sucesso"),
         });
       });
     }
@@ -68,11 +71,12 @@ class CategoryNew extends Component {
     const {
       categoryName,
       description,
-      isActive,
+      // isActive,
       refId,
       products,
       erros,
     } = this.state;
+
     return (
       <ContainerInput>
         <div className="card-input">

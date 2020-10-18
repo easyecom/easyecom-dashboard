@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 
 import Title from "../../components/Text/Title.js";
-import Search from "../../components/Inputs/Search/index";
 import Table from "../../components/Table/Simple";
 import Pagination from "../../components/Pagination/Simple";
 
@@ -28,12 +27,12 @@ class Brands extends Component {
         const token = getToken();
         const { payload } = jwt_decode(token);
 
-        return this.props.getBrands(atual, limit, payload.store_id);
+        return this.props.getBrands(payload.store_id);
       }
 
       const { store_id } = user;
 
-      this.props.getBrands(atual, limit, store_id);
+      this.props.getBrands(store_id);
     } catch (err) {
       console.log(err);
     }

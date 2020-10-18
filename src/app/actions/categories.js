@@ -31,9 +31,9 @@ export const saveCategory = (category, store_id, cb) => {
         },
         getHeaders()
       )
-      .then((response) => {
-        //   console.log(response)
-        dispatch({ type: GET_CATEGORY, payload: response.data });
+      .then(({ data }) => {
+        // console.log(response);
+        dispatch({ type: GET_CATEGORY, payload: data });
         cb(null);
       })
       .catch((err) => cb(errorHandling(err)));

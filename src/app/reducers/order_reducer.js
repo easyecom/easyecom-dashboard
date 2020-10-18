@@ -1,4 +1,4 @@
-import { GET_ORDERS } from "../actions/utils/types";
+import { GET_ORDERS, GET_ORDER, CLEAR_ORDER } from "../actions/utils/types";
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -6,6 +6,16 @@ export default (state = {}, action) => {
       return {
         ...state,
         orders: action.payload.orders,
+      };
+    case GET_ORDER:
+      return {
+        ...state,
+        order: action.payload.order,
+      };
+    case CLEAR_ORDER:
+      return {
+        ...state,
+        order: null,
       };
     default:
       return state;

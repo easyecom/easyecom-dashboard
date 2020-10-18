@@ -44,12 +44,16 @@ class Orders extends Component {
     this.getOrder();
   }
 
+  componentDidUpdate() {
+    this.props.clearOrder();
+  }
+
   onChangeSearch = (event) => this.setState({ search: event.target.value });
 
-  changeAtualNumber = (atual) =>
-    this.setState({ atual }, () => {
-      this.getOrder();
-    });
+  // changeAtualNumber = (atual) =>
+  //   this.setState({ atual }, () => {
+  //     this.getOrder();
+  //   });
 
   render() {
     const { search } = this.state;
@@ -88,9 +92,9 @@ class Orders extends Component {
               atual={this.state.atual}
               total={10}
               limit={this.state.limit}
-              onClick={(atualNumberPage) =>
-                this.changeAtualNumber(atualNumberPage)
-              }
+              // onClick={(atualNumberPage) =>
+              //   this.changeAtualNumber(atualNumberPage)
+              // }
             />
           </div>
         </div>
