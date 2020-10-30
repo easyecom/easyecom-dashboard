@@ -9,8 +9,6 @@ export default class DeliveryDetails extends Component {
   state = {
     status: [
       "Pronto para manuseio",
-      "Preparando entrega",
-      "Entregue a transportadora",
     ],
     trackingValue: "PA8767830037",
   };

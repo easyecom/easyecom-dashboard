@@ -59,10 +59,7 @@ class Brands extends Component {
       datas.push({
         ID: item.brandId,
         MARCA: item.brandName,
-        PRODUTOS:
-          item.products && item.products[0]
-            ? item.products.length
-            : item.products,
+        PRODUTOS: item.products ? item.products.length : item.products,
         ATIVO: item.isActive === true ? "sim" : "não",
         REFID: item.refId ? item.refId : "-",
         buttonDetails: `/Brand/1`,

@@ -35,7 +35,7 @@ class Categories extends Component {
   renderButtonNew() {
     return (
       <Link className="button" to="/Categoria/Nova">
-        <i className="fas fa-plus" ></i>
+        <i className="fas fa-plus"></i>
         <span>&nbsp; Nova Categoria</span>
       </Link>
     );
@@ -44,11 +44,12 @@ class Categories extends Component {
   render() {
     const { categories } = this.props;
     const datas = [];
+
     (categories || []).forEach((item) => {
       datas.push({
         ID: item.categoryId,
         CATEGORIA: item.categoryName,
-        PRODUTOS: item.products[0] ? item.products.length : "",
+        PRODUTOS: item.products && item.products[0] ? item.products.length : "",
         ATIVO: item.isActive === true ? "sim" : "não",
         REFID: item.refId ? item.refId : "-",
         buttonDetails: `/Category/1`,

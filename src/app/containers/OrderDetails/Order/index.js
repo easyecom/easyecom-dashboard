@@ -38,8 +38,8 @@ class OrderDetails extends Component {
 
   renderClientData() {
     if (!this.props.order) return null;
-    const { customer } = this.props.order;
-    console.log(customer);
+    const { customer, address } = this.props.order;
+
     return (
       <Container>
         <Client>
@@ -73,33 +73,23 @@ class OrderDetails extends Component {
               <Title type="h4" title="DADOS DE ENTREGA" />
               <DataText
                 keys="Endereço"
-                value={`${
-                  customer.address.street ? customer.address.street : ""
-                }`}
+                value={`${address.street ? address.street : ""}`}
               />
               <DataText
                 keys="Bairro"
-                value={`${
-                  customer.address.neighborhood
-                    ? customer.address.neighborhood
-                    : ""
-                }`}
+                value={`${address.neighborhood ? address.neighborhood : ""}`}
               />
               <DataText
                 keys="Cidade"
-                value={`${customer.address.city ? customer.address.city : ""}`}
+                value={`${address.city ? address.city : ""}`}
               />
               <DataText
                 keys="Estado"
-                value={`${
-                  customer.address.state ? customer.address.state : ""
-                }`}
+                value={`${address.state ? address.state : ""}`}
               />
               <DataText
                 keys="CEP"
-                value={`${
-                  customer.address.zipcode ? customer.address.zipcode : ""
-                }`}
+                value={`${address.zipcode ? address.zipcode : ""}`}
               />
             </div>
           </div>
@@ -142,14 +132,22 @@ class OrderDetails extends Component {
   }
 
   renderPaymentData() {
+    if (!this.props.order) return null;
+    let { shipping } = this.props.order;
+    const orderValue = "45,90";
     return (
       <Payment>
         <div>
           <div>
             <Title type="h4" title="DADOS DE PAGAMENTO" />
-            <DataText keys="Taxa de entrega" value="R$ 10,00" />
-            <DataText keys="Valor pedido" value="R$ 45,90" />
-            <DataText keys="Valor total" value="R$ 55,90" />
+            <DataText keys="Taxa de entrega" value={`${shipping.cost}`} />
+            <DataText keys="Valor pedido" value={`${orderValue}, calcular no back`} />
+            <DataText
+              keys="Valor total"
+              value={parseFloat(
+                parseInt(shipping.cost) + parseInt(orderValue)
+              ).toFixed(2)}
+            />
             <DataText keys="Forma de pagamento" value="BOLETO" />
           </div>
         </div>
