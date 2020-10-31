@@ -105,12 +105,13 @@ class OrderDetails extends Component {
     let datas = [];
 
     (items || []).forEach((item) => {
-      const priceTotal = item.salesPrice * item.amount;
+      const priceTotal = item.offerPrice || item.salesPrice * item.amount;
 
       datas.push({
         Produto: item.name,
         Quantidade: item.amount,
-        "Preço Und": item.salesPrice,
+        "Total desc": parseFloat(item.salesPrice - item.offerPrice).toFixed(2),
+        "Preço Und": parseFloat(item.offerPrice || item.salesPrice).toFixed(2),
         "Preço total": parseFloat(priceTotal).toFixed(2),
         buttonDetails: `/Pedido/${item.Id}`,
       });
@@ -122,7 +123,13 @@ class OrderDetails extends Component {
           <div>
             <Title type="h4" title="CARRINHO" />
             <TableSimple
-              header={["Produto", "Quantidade", "Preço Und", "Preço total"]}
+              header={[
+                "Produto",
+                "Quantidade",
+                "Preço Und",
+                "Total desc",
+                "Preço total",
+              ]}
               datas={datas}
             />
           </div>
@@ -133,19 +140,21 @@ class OrderDetails extends Component {
 
   renderPaymentData() {
     if (!this.props.order) return null;
-    let { shipping } = this.props.order;
-    const orderValue = "45,90";
+    let { shipping, totalItemsValue } = this.props.order;
     return (
       <Payment>
         <div>
           <div>
             <Title type="h4" title="DADOS DE PAGAMENTO" />
             <DataText keys="Taxa de entrega" value={`${shipping.cost}`} />
-            <DataText keys="Valor pedido" value={`${orderValue}, calcular no back`} />
+            <DataText
+              keys="Valor pedido"
+              value={`${parseFloat(totalItemsValue).toFixed(2)}`}
+            />
             <DataText
               keys="Valor total"
               value={parseFloat(
-                parseInt(shipping.cost) + parseInt(orderValue)
+                parseInt(shipping.cost) + parseInt(totalItemsValue)
               ).toFixed(2)}
             />
             <DataText keys="Forma de pagamento" value="BOLETO" />
