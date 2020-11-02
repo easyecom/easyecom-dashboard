@@ -28,12 +28,11 @@ export const Container = styled.div`
 `;
 
 export const Client = styled.div`
-  // background: red;
   padding: 10px;
   width: 50%;
 `;
-export const Delivery = styled.div`
-  // background: red;
+
+export const Address = styled.div`
   padding: 10px;
   width: 50%;
 `;
@@ -46,10 +45,20 @@ export const Cart = styled.div`
   box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.18);
 `;
 
-export const Payment = styled.div`
+export const PaymentDelivery = styled.div`
   margin-top: 10px;
-  padding: 10px;
-  border-radius: 15px;
-  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
   box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.18);
+`;
+export const Delivery = styled.div`
+  padding: 10px;
+  width: 50%;
+`;
+
+export const Payment = styled.div`
+  padding: 10px;
+  width: 50%;
+  background: #fff;
 `;

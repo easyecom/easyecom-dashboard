@@ -41,10 +41,10 @@ class InputValue extends Component {
   }
 
   renderValue() {
-    const { value } = this.props;
+    const { value, label } = this.props;
     return (
       <Tracking>
-        <label>Código de rastreamento</label>
+        <label>{label}</label>
         <div className="Input-Value">
           <span>{value}</span>
           <div onClick={() => this.toggleForm()}>

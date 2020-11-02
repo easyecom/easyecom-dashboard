@@ -19,7 +19,7 @@ export const getOrders = (page, limit, store_id) => {
 export const getOrder = (store_id, order_id) => {
   return function (dispatch) {
     axios
-      .get(`${api}/stores/${store_id}/orders/${order_id}/admin`, getHeaders())
+      .get(`${api}/stores/${parseInt(store_id)}/orders/${order_id}/admin`, getHeaders())
       .then(({ data }) => {
         dispatch({ type: GET_ORDER, payload: data });
       })

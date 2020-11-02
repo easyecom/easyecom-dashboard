@@ -10,7 +10,7 @@ const base = (Component) => {
     componentDidMount() {
       const { getUser, authorized, history } = this.props;
       getUser();
-      if (!authorized) history.replace("/Login");
+      if (!authorized) history.replace("/Pedido/2"); //desfazer
     }
 
     componentDidUpdate(prevProps) {

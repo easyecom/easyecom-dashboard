@@ -25,8 +25,23 @@ const items = [
   },
   {
     route: "/Produtos",
-    icone: <i className="fas fa-boxes" />,
+    icone: <i className="fas fa-box-open" />,
     title: "Produtos",
+  },
+  {
+    route: "/Promocoes",
+    icone: <i className="fas fa-percentage" />,
+    title: "Promoções",
+  },
+  {
+    route: "/Analytics",
+    icone: <i className="fas fa-chart-line" />,
+    title: "Analytics",
+  },
+  {
+    route: "/Marketing",
+    icone: <i className="fas fa-ad" />,
+    title: "Marketing",
   },
   {
     route: "/Config",

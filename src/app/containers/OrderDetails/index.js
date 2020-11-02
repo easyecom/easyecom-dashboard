@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import OrderDetails from "./Order/index";
-import DeliveryDetails from "./Delivery/index";
-import PaymentDetails from "./Payment/index";
+import Status from "./orderStatus/index";
+// import PaymentDetails from "./Payment/index";
 import { Container } from "./styles";
 
 import jwt_decode from "jwt-decode";
@@ -24,13 +24,13 @@ class Order extends Component {
   }
 
   componentDidMount() {
-    console.log("1")
+    console.log("1");
     this.props.clearOrder();
     this.getOrder();
   }
 
   componentDidUpdate() {
-    console.log("2")
+    console.log("2");
     this.props.clearOrder();
   }
 
@@ -43,10 +43,7 @@ class Order extends Component {
           </div>
           <div className="flex x-axis container-update-order">
             <div className=" flex-1 flex x-axis">
-              <DeliveryDetails />
-            </div>
-            <div className="flex-1 flex x-axis">
-              <PaymentDetails />
+              <Status />
             </div>
           </div>
         </div>
@@ -61,3 +58,14 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, actions)(Order);
+
+{
+  /* <div className=" flex-1 flex x-axis">
+              <DeliveryDetails />
+            </div> */
+}
+{
+  /* <div className="flex-1 flex x-axis">
+              <PaymentDetails />
+            </div> */
+}

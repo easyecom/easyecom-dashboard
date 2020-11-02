@@ -5,7 +5,16 @@ import Title from "../../../components/Text/Title";
 import ButtonSimple from "../../../components/Button/Simple";
 import TableSimple from "../../../components/Table/Simple";
 import { DataText } from "../../../components/Text/Datas/index";
-import { Header, Client, Cart, Delivery, Payment, Container } from "./styles";
+import {
+  Header,
+  Client,
+  Address,
+  Cart,
+  Delivery,
+  Payment,
+  Container,
+  PaymentDelivery,
+} from "./styles";
 
 import jwt_decode from "jwt-decode";
 import { connect } from "react-redux";
@@ -45,7 +54,7 @@ class OrderDetails extends Component {
         <Client>
           <div>
             <div>
-              <Title type="h4" title="DADOS DO CLIENTE" />
+              <Title type="h4" title="CLIENTE" />
               <DataText
                 className="data-text"
                 keys="Nome"
@@ -67,10 +76,10 @@ class OrderDetails extends Component {
             </div>
           </div>
         </Client>
-        <Delivery>
+        <Address>
           <div>
             <div>
-              <Title type="h4" title="DADOS DE ENTREGA" />
+              <Title type="h4" title="ENDEREÇO CLIENTE" />
               <DataText
                 keys="Endereço"
                 value={`${address.street ? address.street : ""}`}
@@ -93,7 +102,7 @@ class OrderDetails extends Component {
               />
             </div>
           </div>
-        </Delivery>
+        </Address>
       </Container>
     );
   }
@@ -140,27 +149,56 @@ class OrderDetails extends Component {
 
   renderPaymentData() {
     if (!this.props.order) return null;
-    let { shipping, totalItemsValue } = this.props.order;
+    let { shipping, totalItemsValue, address } = this.props.order;
     return (
-      <Payment>
-        <div>
+      <PaymentDelivery>
+        <Payment>
           <div>
-            <Title type="h4" title="DADOS DE PAGAMENTO" />
-            <DataText keys="Taxa de entrega" value={`${shipping.cost}`} />
-            <DataText
-              keys="Valor pedido"
-              value={`${parseFloat(totalItemsValue).toFixed(2)}`}
-            />
-            <DataText
-              keys="Valor total"
-              value={parseFloat(
-                parseInt(shipping.cost) + parseInt(totalItemsValue)
-              ).toFixed(2)}
-            />
-            <DataText keys="Forma de pagamento" value="BOLETO" />
+            <div>
+              <Title type="h4" title="DADOS DE PAGAMENTO" />
+              <DataText keys="Taxa de entrega" value={`${shipping.cost}`} />
+              <DataText
+                keys="Valor pedido"
+                value={`${parseFloat(totalItemsValue).toFixed(2)}`}
+              />
+              <DataText
+                keys="Valor total"
+                value={parseFloat(
+                  parseInt(shipping.cost) + parseInt(totalItemsValue)
+                ).toFixed(2)}
+              />
+              <DataText keys="Forma de pagamento" value="BOLETO" />
+            </div>
           </div>
-        </div>
-      </Payment>
+        </Payment>
+        <Delivery>
+          <div>
+            <div>
+              <Title type="h4" title="ENDEREÇO DE ENTREGA" />
+              <DataText
+                keys="Endereço"
+                value={`${address.street ? address.street : ""}`}
+              />
+              <DataText
+                keys="Bairro"
+                value={`${address.neighborhood ? address.neighborhood : ""}`}
+              />
+              <DataText
+                keys="Cidade"
+                value={`${address.city ? address.city : ""}`}
+              />
+              <DataText
+                keys="Estado"
+                value={`${address.state ? address.state : ""}`}
+              />
+              <DataText
+                keys="CEP"
+                value={`${address.zipcode ? address.zipcode : ""}`}
+              />
+            </div>
+          </div>
+        </Delivery>
+      </PaymentDelivery>
     );
   }
 
