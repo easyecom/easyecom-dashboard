@@ -20,7 +20,7 @@ class Brands extends Component {
 
   getBrands() {
     try {
-      const { atual, limit } = this.state;
+      // const { atual, limit } = this.state;
       const { user } = this.props;
 
       if (!user) {

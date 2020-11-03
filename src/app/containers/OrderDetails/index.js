@@ -24,13 +24,12 @@ class Order extends Component {
   }
 
   componentDidMount() {
-    console.log("1");
-    this.props.clearOrder();
     this.getOrder();
+    this.props.clearOrder();
   }
 
   componentDidUpdate() {
-    console.log("2");
+    this.getOrder();
     this.props.clearOrder();
   }
 
@@ -58,14 +57,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, actions)(Order);
-
-{
-  /* <div className=" flex-1 flex x-axis">
-              <DeliveryDetails />
-            </div> */
-}
-{
-  /* <div className="flex-1 flex x-axis">
-              <PaymentDetails />
-            </div> */
-}

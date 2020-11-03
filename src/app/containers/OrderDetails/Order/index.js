@@ -177,23 +177,43 @@ class OrderDetails extends Component {
               <Title type="h4" title="ENDEREÇO DE ENTREGA" />
               <DataText
                 keys="Endereço"
-                value={`${address.street ? address.street : ""}`}
+                value={`${
+                  shipping.shippingAddress.street
+                    ? shipping.shippingAddress.street
+                    : address.street
+                }`}
               />
               <DataText
                 keys="Bairro"
-                value={`${address.neighborhood ? address.neighborhood : ""}`}
+                value={`${
+                  shipping.shippingAddress.neighborhood
+                    ? shipping.shippingAddress.neighborhood
+                    : address.neighborhood
+                }`}
               />
               <DataText
                 keys="Cidade"
-                value={`${address.city ? address.city : ""}`}
+                value={`${
+                  shipping.shippingAddress.city
+                    ? shipping.shippingAddress.city
+                    : address.city
+                }`}
               />
               <DataText
                 keys="Estado"
-                value={`${address.state ? address.state : ""}`}
+                value={`${
+                  shipping.shippingAddress.state
+                    ? shipping.shippingAddress.state
+                    : address.state
+                }`}
               />
               <DataText
                 keys="CEP"
-                value={`${address.zipcode ? address.zipcode : ""}`}
+                value={`${
+                  shipping.shippingAddress.zipcode
+                    ? shipping.shippingAddress.zipcode
+                    : address.zipcode
+                }`}
               />
             </div>
           </div>

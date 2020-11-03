@@ -46,7 +46,7 @@ class CategoryNew extends Component {
   // onChangeWrapper = (field) => this.setState({ [field]: !this.state[field] });
 
   renderHead() {
-    const { productName } = this.state;
+    // const { productName } = this.state;
     return (
       <ContainerHead>
         <div className="flex">
@@ -68,9 +68,9 @@ class CategoryNew extends Component {
     const {
       productName,
       description,
-      isActive,
+      // isActive,
       refId,
-      products,
+      // products,
       erros,
     } = this.state;
     return (

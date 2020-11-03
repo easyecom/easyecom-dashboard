@@ -10,7 +10,7 @@ export default class DeliveryDetails extends Component {
   };
 
   render() {
-    const { status, trackingValue } = this.state;
+    // const { status, trackingValue } = this.state;
 
     return (
       <Container>

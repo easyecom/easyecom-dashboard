@@ -49,7 +49,7 @@ class BrandNew extends Component {
   // onChangeWrapper = (field) => this.setState({ [field]: !this.state[field] });
 
   renderHead() {
-    const { brandName } = this.state;
+    // const { brandName } = this.state;
     return (
       <ContainerHead>
         <div className="flex">
@@ -71,9 +71,9 @@ class BrandNew extends Component {
     const {
       brandName,
       description,
-      isActive,
+      // isActive,
       refId,
-      products,
+      // products,
       erros,
     } = this.state;
     return (
