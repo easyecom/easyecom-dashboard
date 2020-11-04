@@ -10,6 +10,7 @@ export const getOrders = (page, limit, store_id) => {
     axios
       .get(`${api}/stores/${store_id}/orders/admin`, getHeaders())
       .then(({ data }) => {
+        console.log(data)
         dispatch({ type: GET_ORDERS, payload: data });
       })
       .catch(errorHandling);
@@ -21,6 +22,7 @@ export const getOrder = (store_id, order_id) => {
     axios
       .get(`${api}/stores/${parseInt(store_id)}/orders/${order_id}/admin`, getHeaders())
       .then(({ data }) => {
+        console.log(data)
         dispatch({ type: GET_ORDER, payload: data });
       })
       .catch(errorHandling);

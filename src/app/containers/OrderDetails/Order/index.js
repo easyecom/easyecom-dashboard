@@ -178,6 +178,8 @@ class OrderDetails extends Component {
               <DataText
                 keys="Endereço"
                 value={`${
+                  shipping &&
+                  shipping.shippingAddress &&
                   shipping.shippingAddress.street
                     ? shipping.shippingAddress.street
                     : address.street
@@ -186,6 +188,8 @@ class OrderDetails extends Component {
               <DataText
                 keys="Bairro"
                 value={`${
+                  shipping &&
+                  shipping.shippingAddress &&
                   shipping.shippingAddress.neighborhood
                     ? shipping.shippingAddress.neighborhood
                     : address.neighborhood
@@ -194,6 +198,8 @@ class OrderDetails extends Component {
               <DataText
                 keys="Cidade"
                 value={`${
+                  shipping &&
+                  shipping.shippingAddress &&
                   shipping.shippingAddress.city
                     ? shipping.shippingAddress.city
                     : address.city
@@ -202,6 +208,8 @@ class OrderDetails extends Component {
               <DataText
                 keys="Estado"
                 value={`${
+                  shipping &&
+                  shipping.shippingAddress &&
                   shipping.shippingAddress.state
                     ? shipping.shippingAddress.state
                     : address.state
@@ -210,6 +218,8 @@ class OrderDetails extends Component {
               <DataText
                 keys="CEP"
                 value={`${
+                  shipping &&
+                  shipping.shippingAddress &&
                   shipping.shippingAddress.zipcode
                     ? shipping.shippingAddress.zipcode
                     : address.zipcode
@@ -234,7 +244,7 @@ class OrderDetails extends Component {
   }
 
   componentDidMount() {
-    this.getOrder();
+    // this.getOrder();
   }
 
   render() {

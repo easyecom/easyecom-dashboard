@@ -90,7 +90,7 @@ class Orders extends Component {
             />
             <Pagination
               atual={this.state.atual}
-              total={10}
+              total={1}
               limit={this.state.limit}
               // onClick={(atualNumberPage) =>
               //   this.changeAtualNumber(atualNumberPage)
