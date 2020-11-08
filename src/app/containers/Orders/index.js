@@ -58,13 +58,14 @@ class Orders extends Component {
   render() {
     const { search } = this.state;
     const { orders } = this.props;
+    // console.log(orders);
     const datas = [];
 
     (orders || []).forEach((item) => {
       datas.push({
         "ID PEDIDO": item.Id,
         CLIENTE: item.customer.userName,
-        TOTAL: "R$ 50,00",
+        TOTAL: `R$ ${item.totalValue}`,
         DATA: moment(item.created_at).format("DD/MM/YYYY"),
         STATUS: "aguardando pagamento",
         buttonDetails: `/Pedido/${item.Id}`,

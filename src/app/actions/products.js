@@ -16,3 +16,5 @@ export const getProducts = (store_id) => {
       .catch(errorHandling);
   };
 };
+
+

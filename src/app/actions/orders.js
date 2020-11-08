@@ -10,7 +10,7 @@ export const getOrders = (page, limit, store_id) => {
     axios
       .get(`${api}/stores/${store_id}/orders/admin`, getHeaders())
       .then(({ data }) => {
-        console.log(data)
+        // console.log(data)
         dispatch({ type: GET_ORDERS, payload: data });
       })
       .catch(errorHandling);

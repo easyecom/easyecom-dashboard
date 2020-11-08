@@ -19,6 +19,7 @@ import CategoryNew from "./containers/CategoryNew";
 import Brands from "./containers/Brands";
 import BrandNew from './containers/BrandNew'
 import Products from "./containers/Products";
+import Product from "./containers/Product";
 import ProductNew from "./containers/ProductNew";
 import Config from "./containers/Config";
 import Perfil from "./containers/Perfil";
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path={"/Marcas"} exact component={base(Brands)} />
             <Route path={"/Marca/Nova"} exact component={base(BrandNew)} />
             <Route path={"/Produtos"} exact component={base(Products)} />
+            <Route path={"/Produto/:id"} exact component={base(Product)} />
             <Route path={"/Produto/Novo"} exact component={base(ProductNew)} />
             <Route path={"/Config"} exact component={base(Config)} />
             <Route path={"/Perfil"} exact component={base(Perfil)} />

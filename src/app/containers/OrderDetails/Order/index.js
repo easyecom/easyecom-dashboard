@@ -110,7 +110,7 @@ class OrderDetails extends Component {
   renderCartData() {
     if (!this.props.order) return null;
     const { items } = this.props.order;
-
+    console.log(items);
     let datas = [];
 
     (items || []).forEach((item) => {
@@ -122,7 +122,7 @@ class OrderDetails extends Component {
         "Total desc": parseFloat(item.salesPrice - item.offerPrice).toFixed(2),
         "Preço Und": parseFloat(item.offerPrice || item.salesPrice).toFixed(2),
         "Preço total": parseFloat(priceTotal).toFixed(2),
-        buttonDetails: `/Pedido/${item.Id}`,
+        buttonDetails: `/Produto/${item.variation_id}`,
       });
     });
 
@@ -149,7 +149,7 @@ class OrderDetails extends Component {
 
   renderPaymentData() {
     if (!this.props.order) return null;
-    let { shipping, totalItemsValue, address } = this.props.order;
+    let { shipping, payment, totalItemsValue, address } = this.props.order;
     return (
       <PaymentDelivery>
         <Payment>
@@ -167,7 +167,7 @@ class OrderDetails extends Component {
                   parseInt(shipping.cost) + parseInt(totalItemsValue)
                 ).toFixed(2)}
               />
-              <DataText keys="Forma de pagamento" value="BOLETO" />
+              <DataText keys="Forma de pagamento" value={payment.paymentForm} />
             </div>
           </div>
         </Payment>

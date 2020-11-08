@@ -42,7 +42,7 @@ class Products extends Component {
 
   render() {
     const { products } = this.props;
-    console.log(products, "teste");
+    console.log(products);
     const datas = [];
     (products || []).forEach((item) => {
       datas.push({
@@ -51,7 +51,7 @@ class Products extends Component {
         MARCA: item.brandName,
         VARIACOES: item.variations[0] ? item.variations[0].length : "",
         PRECO: item.salesPrice,
-        buttonDetails: `/Produto/1`,
+        buttonDetails: `/Produto/${item.productId}`,
       });
     });
 
