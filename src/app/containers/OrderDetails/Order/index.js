@@ -48,7 +48,7 @@ class OrderDetails extends Component {
   renderClientData() {
     if (!this.props.order) return null;
     const { customer, address } = this.props.order;
-
+// console.log(customer)
     return (
       <Container>
         <Client>
@@ -122,7 +122,7 @@ class OrderDetails extends Component {
         "Total desc": parseFloat(item.salesPrice - item.offerPrice).toFixed(2),
         "Preço Und": parseFloat(item.offerPrice || item.salesPrice).toFixed(2),
         "Preço total": parseFloat(priceTotal).toFixed(2),
-        buttonDetails: `/Produto/${item.variation_id}`,
+        buttonDetails: `/Variacao/${item.variation_id}`,
       });
     });
 

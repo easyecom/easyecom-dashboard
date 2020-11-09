@@ -5,9 +5,10 @@ class Perfil extends Component {
   render() {
     return (
       <Container>
-        <h1>Perfil</h1>u
+        <h1>Perfil</h1>
       </Container>
     );
   }
 }
+
 export default Perfil;
