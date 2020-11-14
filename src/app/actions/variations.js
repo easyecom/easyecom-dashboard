@@ -10,7 +10,6 @@ export const getVariation = (store_id, variation_id) => {
     axios
       .get(`${api}/stores/${store_id}/variations/${variation_id}`, getHeaders())
       .then((response) => {
-        // console.log(response);
         dispatch({ type: GET_VARIATION, payload: response.data });
       })
       .catch(errorHandling);

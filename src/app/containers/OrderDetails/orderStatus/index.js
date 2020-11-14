@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import Title from "../../../components/Text/Title";
 import { Container } from "./styles";
 
-export default class DeliveryDetails extends Component {
+import { connect } from "react-redux";
+// import { getToken } from "../../actions/helpers/localStorage";
+// import * as actions from "../../actions/orders";
+
+class OrderDetails extends Component {
   state = {
     status: ["Pronto para manuseio"],
     trackingValue: "PA8767830037",
@@ -56,3 +60,9 @@ export default class DeliveryDetails extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  orders: state.order.orders,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, null)(OrderDetails);

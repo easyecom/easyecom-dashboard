@@ -110,7 +110,9 @@ class OrderDetails extends Component {
   renderCartData() {
     if (!this.props.order) return null;
     const { items } = this.props.order;
+
     console.log(items);
+    
     let datas = [];
 
     (items || []).forEach((item) => {
@@ -150,6 +152,7 @@ class OrderDetails extends Component {
   renderPaymentData() {
     if (!this.props.order) return null;
     let { shipping, payment, totalItemsValue, address } = this.props.order;
+
     return (
       <PaymentDelivery>
         <Payment>
@@ -167,7 +170,7 @@ class OrderDetails extends Component {
                   parseInt(shipping.cost) + parseInt(totalItemsValue)
                 ).toFixed(2)}
               />
-              <DataText keys="Forma de pagamento" value={payment.paymentForm} />
+              <DataText keys="Forma de pagamento" value={payment.paymentForm || ""} />
             </div>
           </div>
         </Payment>

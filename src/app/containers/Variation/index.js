@@ -37,8 +37,14 @@ class Variation extends Component {
 
   render() {
     if (!this.props.variation) return null;
-    const [variation] = this.props.variation;
-    console.log(variation);
+    const { variation, order } = this.props;
+
+    const { amount } = order.items.find((item) => {
+      if (item.variation_id == variation.variationId) {
+        return item;
+      }
+    });
+
     return (
       <Container>
         <div>
@@ -77,11 +83,7 @@ class Variation extends Component {
             keys="RefId"
             value={`${variation.refId}`}
           />
-          <DataText
-            className="data-text"
-            keys="Qtd"
-            value={`${variation.amount}`}
-          />
+          <DataText className="data-text" keys="Qtd" value={`${amount}`} />
           <DataText
             className="data-text"
             keys="Altura"
@@ -110,6 +112,7 @@ class Variation extends Component {
 
 const mapStateToProps = (state) => ({
   variation: state.variation.variation,
+  order: state.order.order,
   user: state.auth.user,
 });
 
