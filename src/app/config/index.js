@@ -1,1 +1,1 @@
-export const api = "http://localhost:3777";
+export const api = process.env.REACT_APP_API_URL || "http://localhost:3777";
