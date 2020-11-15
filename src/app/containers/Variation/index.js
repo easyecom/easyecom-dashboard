@@ -40,7 +40,7 @@ class Variation extends Component {
     const { variation, order } = this.props;
 
     const { amount } = order.items.find((item) => {
-      if (item.variation_id == variation.variationId) {
+      if (item.variation_id === variation.variationId) {
         return item;
       }
     });
