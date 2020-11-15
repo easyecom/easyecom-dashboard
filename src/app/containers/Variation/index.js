@@ -44,6 +44,7 @@ class Variation extends Component {
         return item;
       }
     });
+    
 
     return (
       <Container>
