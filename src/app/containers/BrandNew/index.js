@@ -84,7 +84,7 @@ class BrandNew extends Component {
             <InputSimple
               name="brandName"
               label="Name"
-              // placeholder={placeholder}
+              placeholder="digite uma marca"
               type=""
               value={brandName}
               erros={erros.brandName}
@@ -98,6 +98,7 @@ class BrandNew extends Component {
             <InputSimple
               name="description"
               label="Description"
+              placeholder="digite uma descrição"
               value={description}
               erros={erros.description}
               onChange={(evento) =>

@@ -11,7 +11,7 @@ import { Container, ContainerHead, ContainerInput } from "./styles";
 import { getToken } from "../../actions/helpers/localStorage";
 import * as actions from "../../actions/products";
 
-class CategoryNew extends Component {
+class productNew extends Component {
   state = {
     productName: "",
     description: "",
@@ -68,9 +68,15 @@ class CategoryNew extends Component {
     const {
       productName,
       description,
-      // isActive,
       refId,
-      // products,
+      descriptionShort,
+      keyWords,
+      mainCategory,
+      categoryId,
+      brand_id,
+      sku,
+      title,
+      isActive,
       erros,
     } = this.state;
     return (
@@ -91,7 +97,19 @@ class CategoryNew extends Component {
             />
           </div>
           <div>
-            <p>Descrição do produto</p>
+            <p>Descrição curta</p>
+            <InputSimple
+              name="descriptionShort"
+              label="descriptionShort"
+              value={descriptionShort}
+              erros={erros.descriptionShort}
+              onChange={(evento) =>
+                this.onChangeInput("descriptionShort", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Descrição longa</p>
             <InputSimple
               name="description"
               label="Description"
@@ -103,6 +121,64 @@ class CategoryNew extends Component {
             />
           </div>
           <div>
+            <div>
+              <p>Palavras Chave</p>
+              <InputSimple
+                name="keyWords"
+                label="Name"
+                // placeholder={placeholder}
+                type=""
+                value={keyWords}
+                erros={erros.keyWords}
+                onChange={(evento) =>
+                  this.onChangeInput("keyWords", evento.target.value)
+                }
+              />
+            </div>
+            <div>
+              <p>Categorias</p>
+
+              <select id="categories principal">
+                <option value="Tenis">Tenis</option>
+                <option value="Bermudas">Bermudas</option>
+                <option value="Calças">Calças</option>
+                <option value="Camisetas">Camisetas</option>
+              </select>
+            </div>
+            <div>
+              <p>Categoria principal</p>
+
+              <select id="categories principal">
+                <option value="Tenis">Tenis</option>
+                <option value="Bermudas">Bermudas</option>
+                <option value="Calças">Calças</option>
+                <option value="Camisetas">Camisetas</option>
+              </select>
+            </div>
+            <div>
+              <p>Marca do produto</p>
+
+              <select id="categories principal">
+                <option value="Tenis">Adidas</option>
+                <option value="Bermudas">Nike</option>
+                <option value="Calças">Volcon</option>
+                <option value="Camisetas">qix</option>
+              </select>
+            </div>
+            <div>
+              <p>Descrição Curta</p>
+              <InputSimple
+                name="descriptionShort"
+                label="Name"
+                // placeholder={placeholder}
+                type=""
+                value={descriptionShort}
+                erros={erros.descriptionShort}
+                onChange={(evento) =>
+                  this.onChangeInput("descriptionShort", evento.target.value)
+                }
+              />
+            </div>
             <p>Refid</p>
             <InputSimple
               name="refId"
@@ -148,4 +224,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, actions)(CategoryNew);
+export default connect(mapStateToProps, actions)(productNew);

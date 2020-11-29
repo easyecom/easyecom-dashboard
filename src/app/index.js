@@ -49,7 +49,7 @@ class App extends Component {
             <Route path={"/Marca/Nova"} exact component={base(BrandNew)} />
             <Route path={"/Produtos"} exact component={base(Products)} />
             <Route path={"/Produto/:id"} exact component={base(Product)} />
-            <Route path={"/Produto/Novo"} exact component={base(ProductNew)} />
+            <Route path={"/Produto-novo"} exact component={base(ProductNew)} />
             <Route path={"/Config"} exact component={base(Config)} />
             <Route path={"/Variacao/:id"} exact component={base(Variation)} />
 

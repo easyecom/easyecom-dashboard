@@ -33,7 +33,7 @@ class Products extends Component {
 
   renderButtonNew() {
     return (
-      <Link className="button" to="/Produto/Novo">
+      <Link className="button" to="/Produto-novo">
         <i className="fas fa-plus"></i>
         <span>&nbsp; Novo Produto</span>
       </Link>
@@ -48,9 +48,9 @@ class Products extends Component {
       datas.push({
         ID: item.productId,
         PRODUTO: item.productName,
+        DESCRIÇÃO: item.descriptionShort,
         MARCA: item.brandName,
-        VARIACOES: item.variations[0] ? item.variations[0].length : "",
-        PRECO: item.salesPrice,
+        VARIACOES: item.variations ? item.variations.length : "",
         buttonDetails: `/Produto/${item.productId}`,
       });
     });
@@ -65,7 +65,7 @@ class Products extends Component {
             </div>
             <br />
             <Table
-              header={["ID", "PRODUTO", "VARIACOES", "MARCA", "PRECO"]}
+              header={["ID", "PRODUTO", "DESCRIÇÃO", "VARIACOES", "MARCA"]}
               datas={datas}
             />
           </div>
