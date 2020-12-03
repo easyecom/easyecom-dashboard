@@ -1,4 +1,10 @@
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -7,9 +13,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.jqZRqB {
-  height: 100vh;
+.gddsDQ {
+  height: 100%;
 }
+
 /* 
 .padding-inside {
   padding: 10px 20px 0 20px;
@@ -20,7 +27,7 @@ body {
 }
 
 .full-height {
-  height: 100vh;
+  height: 100%;
 }
 
 .flex {

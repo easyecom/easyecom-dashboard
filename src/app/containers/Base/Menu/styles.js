@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .container {
-    height: 1090px;
+    height: 100%;
   }
 
   .Menu {
@@ -11,7 +11,7 @@ export const Container = styled.div`
 
   .item-top {
     background: #363636;
-    height: 70px;
+    height: 50px;
     color: #81b71a;
     border-bottom: 1px solid #fff
   }

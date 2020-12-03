@@ -5,6 +5,10 @@ export const Container = styled.div`
   max-width: 100%;
   padding: 10px 50px 0 0;
 
+  height: 100vh;
+
+  /* background: red; */
+
   .title {
     color: #fff;
     text-decoration: none;

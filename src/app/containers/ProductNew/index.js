@@ -82,8 +82,43 @@ class productNew extends Component {
     return (
       <ContainerInput>
         <div className="card-input">
+          <div className="boxOptions">
+            <div className="box">
+              <p>Categorias</p>
+              <div className="options">
+                <select id="categories principal">
+                  <option value="Tenis">Tenis</option>
+                  <option value="Bermudas">Bermudas</option>
+                  <option value="Calças">Calças</option>
+                  <option value="Camisetas">Camisetas</option>
+                </select>
+              </div>
+            </div>
+            <div className="box">
+              <p>Categoria principal</p>
+              <div className="options">
+                <select id="categories principal">
+                  <option value="Tenis">Tenis</option>
+                  <option value="Bermudas">Bermudas</option>
+                  <option value="Calças">Calças</option>
+                  <option value="Camisetas">Camisetas</option>
+                </select>
+              </div>
+            </div>
+            <div className="box">
+              <p>Marca do produto</p>
+              <div className="options">
+                <select id="categories principal">
+                  <option value="Tenis">Adidas</option>
+                  <option value="Bermudas">Nike</option>
+                  <option value="Calças">Volcon</option>
+                  <option value="Camisetas">qix</option>
+                </select>
+              </div>
+            </div>
+          </div>
           <div>
-            <p>Produto</p>
+            <p>Nome produto</p>
             <InputSimple
               name="productName"
               label="Name"
@@ -97,7 +132,21 @@ class productNew extends Component {
             />
           </div>
           <div>
-            <p>Descrição curta</p>
+            <p>Descrição curta do produto</p>
+            <InputSimple
+              name="productName"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={productName}
+              erros={erros.productName}
+              onChange={(evento) =>
+                this.onChangeInput("productName", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Nome variação do produto</p>
             <InputSimple
               name="descriptionShort"
               label="descriptionShort"
@@ -109,87 +158,157 @@ class productNew extends Component {
             />
           </div>
           <div>
-            <p>Descrição longa</p>
+            <p>Titulo da variação</p>
             <InputSimple
-              name="description"
-              label="Description"
-              value={description}
-              erros={erros.description}
+              name="keyWords"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={keyWords}
+              erros={erros.keyWords}
               onChange={(evento) =>
-                this.onChangeInput("description", evento.target.value)
+                this.onChangeInput("keyWords", evento.target.value)
               }
             />
           </div>
           <div>
-            <div>
-              <p>Palavras Chave</p>
-              <InputSimple
-                name="keyWords"
-                label="Name"
-                // placeholder={placeholder}
-                type=""
-                value={keyWords}
-                erros={erros.keyWords}
-                onChange={(evento) =>
-                  this.onChangeInput("keyWords", evento.target.value)
-                }
-              />
-            </div>
-            <div>
-              <p>Categorias</p>
-
-              <select id="categories principal">
-                <option value="Tenis">Tenis</option>
-                <option value="Bermudas">Bermudas</option>
-                <option value="Calças">Calças</option>
-                <option value="Camisetas">Camisetas</option>
-              </select>
-            </div>
-            <div>
-              <p>Categoria principal</p>
-
-              <select id="categories principal">
-                <option value="Tenis">Tenis</option>
-                <option value="Bermudas">Bermudas</option>
-                <option value="Calças">Calças</option>
-                <option value="Camisetas">Camisetas</option>
-              </select>
-            </div>
-            <div>
-              <p>Marca do produto</p>
-
-              <select id="categories principal">
-                <option value="Tenis">Adidas</option>
-                <option value="Bermudas">Nike</option>
-                <option value="Calças">Volcon</option>
-                <option value="Camisetas">qix</option>
-              </select>
-            </div>
-            <div>
-              <p>Descrição Curta</p>
-              <InputSimple
-                name="descriptionShort"
-                label="Name"
-                // placeholder={placeholder}
-                type=""
-                value={descriptionShort}
-                erros={erros.descriptionShort}
-                onChange={(evento) =>
-                  this.onChangeInput("descriptionShort", evento.target.value)
-                }
-              />
-            </div>
-            <p>Refid</p>
+            <p>Descrição curta da variação</p>
             <InputSimple
-              name="refId"
-              label="RefId"
-              value={refId}
-              erros={erros.refId}
+              name="productName"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={productName}
+              erros={erros.productName}
               onChange={(evento) =>
-                this.onChangeInput("refId", evento.target.value)
+                this.onChangeInput("productName", evento.target.value)
               }
             />
           </div>
+          <div>
+            <p>Descrição longa da variação</p>
+            <InputSimple
+              name="productName"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={productName}
+              erros={erros.productName}
+              onChange={(evento) =>
+                this.onChangeInput("productName", evento.target.value)
+              }
+            />
+          </div>
+          <p>Preço</p>
+          <InputSimple
+            name="refId"
+            label="RefId"
+            value={refId}
+            erros={erros.refId}
+            onChange={(evento) =>
+              this.onChangeInput("refId", evento.target.value)
+            }
+          />
+           <div>
+            <p>Estoque</p>
+            <InputSimple
+              name="productName"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={productName}
+              erros={erros.productName}
+              onChange={(evento) =>
+                this.onChangeInput("productName", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Peso</p>
+            <InputSimple
+              name="descriptionShort"
+              label="descriptionShort"
+              value={descriptionShort}
+              erros={erros.descriptionShort}
+              onChange={(evento) =>
+                this.onChangeInput("descriptionShort", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Altura do pacote</p>
+            <InputSimple
+              name="keyWords"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={keyWords}
+              erros={erros.keyWords}
+              onChange={(evento) =>
+                this.onChangeInput("keyWords", evento.target.value)
+              }
+            />
+          </div>
+          <p>Largura do pacote</p>
+          <InputSimple
+            name="refId"
+            label="RefId"
+            value={refId}
+            erros={erros.refId}
+            onChange={(evento) =>
+              this.onChangeInput("refId", evento.target.value)
+            }
+          />
+           <div>
+            <p>Comprimento do pacote</p>
+            <InputSimple
+              name="productName"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={productName}
+              erros={erros.productName}
+              onChange={(evento) =>
+                this.onChangeInput("productName", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Preço oferta</p>
+            <InputSimple
+              name="descriptionShort"
+              label="descriptionShort"
+              value={descriptionShort}
+              erros={erros.descriptionShort}
+              onChange={(evento) =>
+                this.onChangeInput("descriptionShort", evento.target.value)
+              }
+            />
+          </div>
+          <div>
+            <p>Palavras Chave</p>
+            <InputSimple
+              name="keyWords"
+              label="Name"
+              // placeholder={placeholder}
+              type=""
+              value={keyWords}
+              erros={erros.keyWords}
+              onChange={(evento) =>
+                this.onChangeInput("keyWords", evento.target.value)
+              }
+            />
+          </div>
+          <p>Ean</p>
+          <InputSimple
+            name="refId"
+            label="RefId"
+            value={refId}
+            erros={erros.refId}
+            onChange={(evento) =>
+              this.onChangeInput("refId", evento.target.value)
+            }
+          />
           <div className="btn">
             <ButtonSimple
               type="component-button"
