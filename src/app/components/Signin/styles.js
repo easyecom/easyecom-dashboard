@@ -52,9 +52,9 @@ export const Container = styled.div`
   }
 
   button {
-    width: 400px;
-    height: 50px;
-    border-radius: 30px;
+    width: 300px;
+    height: 40px;
+    border-radius: 6px;
     border: none;
     background: #81b71a;
     color: #fff;

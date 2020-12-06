@@ -4,21 +4,23 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #d3d3d3;
 
-  height: 100%;
+  background: #81b71a;
+  height: 100vh;
 
   .Login {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 80%;
     height: 70%;
+    width: 45%;
     background: #fff;
 
-    box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.18);
-    .image {
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.1);
+    /* .image {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -31,23 +33,30 @@ export const Container = styled.div`
 
       width: 50%;
       height: 100%;
-    }
+    } */
 
     .card {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 50%;
-      height: 100%;
+      /* width: 50%;
+      height: 100%; */
+
+      strong {
+        margin-bottom: 60px;
+        font-size: 25px;
+      }
 
       .login-cadastro {
         display: flex;
-        width: 410px;
+        align-items: center;
+        justify-content: center;
+        margin: 50px;
 
         button {
           margin-right: 10px;
-          width: 100px;
+          width: 100%;
           border: none;
           background: #fff;
           font-size: 20px;
@@ -55,13 +64,13 @@ export const Container = styled.div`
           cursor: pointer;
           outline: none;
         }
-        
-        .button-active {
+
+        /* .button-active {
           border-bottom: 3px solid #00008b;
           font-weight: bold;
           color: #00008b;
           outline: none;
-        }
+        } */
       }
     }
   }

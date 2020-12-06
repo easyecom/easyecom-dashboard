@@ -18,23 +18,24 @@ export default class Login extends Component {
         <div className="Login">
           <div className="image"></div>
           <div className="card">
+            {/* <img src="./static/logo.png" className="logo" /> */}
             {/* <Title type="h1" title="EASYECOM PLATAFORM" /> */}
             <div className="login-cadastro">
               <button
                 onClick={this.active}
                 className={`${this.state.on ? "button-active" : ""}`}
               >
-                Entrar
+                Acessar dashboard
               </button>
-              <button
+              {/* <button
                 onClick={this.active}
                 className={`${!this.state.on ? "button-active" : ""}`}
               >
                 Cadastrar
-              </button>
+              </button> */}
             </div>
             {this.state.on && <Signin />}
-            {!this.state.on && <Signup />}
+            {/* {!this.state.on && <Signup />} */}
           </div>
         </div>
       </Container>
