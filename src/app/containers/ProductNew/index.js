@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+// buscar categoria e marca para passar no options
+
+import React, { Component, useMemo } from "react";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 
@@ -7,7 +9,7 @@ import InputSimple from "../../components/Inputs/Simple";
 import ButtonSimple from "../../components/Button/Simple";
 import SwitchWrapper from "../../components/Inputs/SwitchWrapper/index";
 
-import { Container, ContainerHead, ContainerInput } from "./styles";
+import { Container, ContainerTitle, ContainerInput } from "./styles";
 import { getToken } from "../../actions/helpers/localStorage";
 import * as actions from "../../actions/products";
 
@@ -15,12 +17,12 @@ class productNew extends Component {
   state = {
     productName: "",
     description: "",
-    isActive: true,
     refId: "",
     products: [],
     erros: {},
     warn: null,
-    changeWrapper: false,
+    isActive: false,
+    images: null,
   };
 
   saveProduct() {
@@ -43,22 +45,24 @@ class productNew extends Component {
     this.props.saveProduct(this.state, store_id);
   }
 
-  // onChangeWrapper = (field) => this.setState({ [field]: !this.state[field] });
+  onIsActive = () => this.setState({ isActive: !this.state.isActive });
 
   renderHead() {
-    // const { productName } = this.state;
     return (
-      <ContainerHead>
+    <ContainerTitle >
         <div className="flex">
-          <div className="flex-1 flex">
-            <Title type="h1" title={"Novo produto"} />
-          </div>
-          <div className="flex-1 flex flex-end">
-            <strong>Produto desativada &nbsp; </strong>{" "}
-            <SwitchWrapper onChange={this.onChangeWrapper} />
-          </div>
+        <div>
+          <Title type="h1" title={"Novo produto"} />
         </div>
-      </ContainerHead>
+        <div className="flex-1 flex flex-end">
+          <strong>
+            {this.state.isActive == true ? "ativo" : "inativo"}
+            &nbsp;{" "}
+          </strong>{" "}
+          <SwitchWrapper onChange={this.onIsActive} />
+        </div>
+      </div>
+    </ContainerTitle>
     );
   }
 
@@ -79,241 +83,247 @@ class productNew extends Component {
       isActive,
       erros,
     } = this.state;
+
+    const camera = "";
+
     return (
       <ContainerInput>
         <div className="card-input">
-          <div className="boxOptions">
-            <div className="box">
-              <p>Categorias</p>
-              <div className="options">
-                <select id="categories principal">
-                  <option value="Tenis">Tenis</option>
-                  <option value="Bermudas">Bermudas</option>
-                  <option value="Calças">Calças</option>
-                  <option value="Camisetas">Camisetas</option>
-                </select>
+          <div className="row-1">
+            <div className="name-title">
+              <InputSimple
+                name="productName"
+                label="Name"
+                placeholder={"Nome produto"}
+                type="text"
+                value={productName}
+                erros={erros.productName}
+                onChange={(evento) =>
+                  this.onChangeInput("productName", evento.target.value)
+                }
+              />
+              <InputSimple
+                name="Titulo"
+                label="Name"
+                placeholder={"Titulo"}
+                type="text"
+                value={refId}
+                erros={erros.refId}
+                onChange={(evento) =>
+                  this.onChangeInput("refId", evento.target.value)
+                }
+              />
+            </div>
+            <div className="text-areas">
+              <div className="short-description">
+                <label>Descrição curta</label>
+                <div>
+                  <textarea required=""></textarea>
+                </div>
+              </div>
+
+              <div className="long-description">
+                <label>Descrição longa</label>
+                <div>
+                  <textarea required=""></textarea>
+                </div>
               </div>
             </div>
-            <div className="box">
-              <p>Categoria principal</p>
-              <div className="options">
-                <select id="categories principal">
-                  <option value="Tenis">Tenis</option>
-                  <option value="Bermudas">Bermudas</option>
-                  <option value="Calças">Calças</option>
-                  <option value="Camisetas">Camisetas</option>
-                </select>
+            <div className="boxOptions">
+              <div className="box">
+                <p>Categorias</p>
+                <div className="options">
+                  <select className="option" id="categories principal">
+                    <option value="Tenis">Tenis</option>
+                    <option value="Bermudas">Bermudas</option>
+                    <option value="Calças">Calças</option>
+                    <option value="Camisetas">Camisetas</option>
+                  </select>
+                </div>
+              </div>
+              <div className="box">
+                <p>Categoria principal</p>
+                <div className="options">
+                  <select className="option" id="categories principal">
+                    <option value="Tenis">Tenis</option>
+                    <option value="Bermudas">Bermudas</option>
+                    <option value="Calças">Calças</option>
+                    <option value="Camisetas">Camisetas</option>
+                  </select>
+                </div>
+              </div>
+              <div className="box">
+                <p>Marca do produto</p>
+                <div className="options">
+                  <select className="option" id="categories principal">
+                    <option value="Tenis">Adidas</option>
+                    <option value="Bermudas">Nike</option>
+                    <option value="Calças">Volcon</option>
+                    <option value="Camisetas">qix</option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div className="box">
-              <p>Marca do produto</p>
-              <div className="options">
-                <select id="categories principal">
-                  <option value="Tenis">Adidas</option>
-                  <option value="Bermudas">Nike</option>
-                  <option value="Calças">Volcon</option>
-                  <option value="Camisetas">qix</option>
-                </select>
+            <div className="price-stock">
+              <div className="box">
+                <p>PREÇO</p>
+                <div className="item">
+                  <InputSimple
+                    name="price"
+                    label="price"
+                    placeholder={"0.00"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="box">
+                <p>PROMOÇÃO</p>
+                <div className="item">
+                  <InputSimple
+                    name="price"
+                    label="price"
+                    placeholder={"0.00"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="box">
+                <p>ESTOQUE</p>
+                <div className="item">
+                  <InputSimple
+                    name="stock"
+                    label="stock"
+                    placeholder={"0"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="box">
+                <p>ESTOQUE MIN</p>
+                <div className="item">
+                  <InputSimple
+                    name="stock"
+                    label="stock"
+                    placeholder={"0"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="dimensions">
+              <div className="box">
+                <p>ALTURA (cm)</p>
+                <div className="item">
+                  <InputSimple
+                    name="altura"
+                    label="altura"
+                    placeholder={"0 cm"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="box">
+                <p>LARGURA (cm)</p>
+                <div className="item">
+                  <InputSimple
+                    name="largura"
+                    label="largura"
+                    placeholder={"0 cm"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="box">
+                <p>COMP (cm)</p>
+                <div className="item">
+                  <InputSimple
+                    name="comprimento"
+                    label="comprimento"
+                    placeholder={"0 cm"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="box">
+                <p>PESO (kg)</p>
+                <div className="item">
+                  <InputSimple
+                    name="peso"
+                    label="peso"
+                    placeholder={"0 kg"}
+                    type="text"
+                    value={refId}
+                    erros={erros.refId}
+                    onChange={(evento) =>
+                      this.onChangeInput("refId", evento.target.value)
+                    }
+                  />
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <p>Nome produto</p>
-            <InputSimple
-              name="productName"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={productName}
-              erros={erros.productName}
-              onChange={(evento) =>
-                this.onChangeInput("productName", evento.target.value)
-              }
-            />
+          <p>Enviar imagens</p>
+          <div className="images">
+            <label id="image">
+              <input type="file" />
+              <i class="fas fa-camera" alt="Adcionar foto"></i>
+            </label>
+            <label id="image">
+              <input type="file" />
+              <i class="fas fa-camera" alt="Adcionar foto"></i>
+            </label>
+            <label id="image">
+              <input type="file" />
+              <i class="fas fa-camera" alt="Adcionar foto"></i>
+            </label>
+            <label id="image">
+              <input
+                type="file"
+                onChange={(e) => this.setState(e.target.files)}
+              />
+              <i class="fas fa-camera" alt="Adcionar foto"></i>
+            </label>
           </div>
-          <div>
-            <p>Descrição curta do produto</p>
-            <InputSimple
-              name="productName"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={productName}
-              erros={erros.productName}
-              onChange={(evento) =>
-                this.onChangeInput("productName", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Nome variação do produto</p>
-            <InputSimple
-              name="descriptionShort"
-              label="descriptionShort"
-              value={descriptionShort}
-              erros={erros.descriptionShort}
-              onChange={(evento) =>
-                this.onChangeInput("descriptionShort", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Titulo da variação</p>
-            <InputSimple
-              name="keyWords"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={keyWords}
-              erros={erros.keyWords}
-              onChange={(evento) =>
-                this.onChangeInput("keyWords", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Descrição curta da variação</p>
-            <InputSimple
-              name="productName"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={productName}
-              erros={erros.productName}
-              onChange={(evento) =>
-                this.onChangeInput("productName", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Descrição longa da variação</p>
-            <InputSimple
-              name="productName"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={productName}
-              erros={erros.productName}
-              onChange={(evento) =>
-                this.onChangeInput("productName", evento.target.value)
-              }
-            />
-          </div>
-          <p>Preço</p>
-          <InputSimple
-            name="refId"
-            label="RefId"
-            value={refId}
-            erros={erros.refId}
-            onChange={(evento) =>
-              this.onChangeInput("refId", evento.target.value)
-            }
-          />
-           <div>
-            <p>Estoque</p>
-            <InputSimple
-              name="productName"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={productName}
-              erros={erros.productName}
-              onChange={(evento) =>
-                this.onChangeInput("productName", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Peso</p>
-            <InputSimple
-              name="descriptionShort"
-              label="descriptionShort"
-              value={descriptionShort}
-              erros={erros.descriptionShort}
-              onChange={(evento) =>
-                this.onChangeInput("descriptionShort", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Altura do pacote</p>
-            <InputSimple
-              name="keyWords"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={keyWords}
-              erros={erros.keyWords}
-              onChange={(evento) =>
-                this.onChangeInput("keyWords", evento.target.value)
-              }
-            />
-          </div>
-          <p>Largura do pacote</p>
-          <InputSimple
-            name="refId"
-            label="RefId"
-            value={refId}
-            erros={erros.refId}
-            onChange={(evento) =>
-              this.onChangeInput("refId", evento.target.value)
-            }
-          />
-           <div>
-            <p>Comprimento do pacote</p>
-            <InputSimple
-              name="productName"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={productName}
-              erros={erros.productName}
-              onChange={(evento) =>
-                this.onChangeInput("productName", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Preço oferta</p>
-            <InputSimple
-              name="descriptionShort"
-              label="descriptionShort"
-              value={descriptionShort}
-              erros={erros.descriptionShort}
-              onChange={(evento) =>
-                this.onChangeInput("descriptionShort", evento.target.value)
-              }
-            />
-          </div>
-          <div>
-            <p>Palavras Chave</p>
-            <InputSimple
-              name="keyWords"
-              label="Name"
-              // placeholder={placeholder}
-              type=""
-              value={keyWords}
-              erros={erros.keyWords}
-              onChange={(evento) =>
-                this.onChangeInput("keyWords", evento.target.value)
-              }
-            />
-          </div>
-          <p>Ean</p>
-          <InputSimple
-            name="refId"
-            label="RefId"
-            value={refId}
-            erros={erros.refId}
-            onChange={(evento) =>
-              this.onChangeInput("refId", evento.target.value)
-            }
-          />
           <div className="btn">
             <ButtonSimple
               type="component-button"
               onClick={() => this.saveProduct()}
-              label="Salvar"
+              label="SALVAR"
             />
           </div>
         </div>
@@ -339,7 +349,6 @@ class productNew extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  products: state.category.products,
   user: state.auth.user,
 });
 

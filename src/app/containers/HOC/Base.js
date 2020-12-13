@@ -10,7 +10,7 @@ const base = (Component) => {
     componentDidMount() {
       const { getUser, authorized, history } = this.props;
       getUser();
-      if (!authorized) history.replace("Login"); //desfazer em HOC/Base.js
+      if (!authorized) history.replace("Produto-novo"); //desfazer em HOC/Base.js
     }
 
     componentDidUpdate(prevProps) {

@@ -28,7 +28,7 @@ export const Container = styled.div`
     display: block;
     position: absolute;
     top: 1px;
-    left: 1px;
+    left: 3px;
     bottom: 1px;
     content: "";
   }
@@ -39,8 +39,8 @@ export const Container = styled.div`
     transition: all 0.4s;
   }
   .switch--shadow + label:after {
-    width: 27px;
-    height: 19px;
+    width: 23px;
+    height:18px;
     margin-top: 1px;
     background-color: #fff;
     border-radius: 100%;
@@ -49,7 +49,7 @@ export const Container = styled.div`
   }
 
   .switch--shadow:checked + label:before {
-    background-color: #8ce196;
+    background-color: #81b71a;
   }
   .switch--shadow:checked + label:after {
     transform: translateX(18px);

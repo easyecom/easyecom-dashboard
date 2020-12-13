@@ -1,8 +1,7 @@
 import React from "react";
-import { Container } from "./styles";
 
 const InputSimple = ({ type, value, onChange, placeholder, error }) => (
-  <Container>
+  <div>
     {error && <small className="small-danger">{error}</small>}
     <div className="Input-simples">
       <input
@@ -13,7 +12,7 @@ const InputSimple = ({ type, value, onChange, placeholder, error }) => (
         className={`${error ? "input-error" : ""}`}
       />
     </div>
-  </Container>
+  </div>
 );
 
 export default InputSimple;

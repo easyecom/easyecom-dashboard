@@ -6,7 +6,7 @@ export default (state = {}, action) => {
         // console.log(action.payload);
       return {
         ...state,
-        products: action.payload.products,
+        products: action.payload,
       };
     default:
       return state;

@@ -1,11 +1,14 @@
 html {
-  height: 100%;
+  /* height: 100%; */
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  height: 100%;
-
+  /* height: 100%; */
+  padding: 0;
   margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -13,13 +16,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.gddsDQ {
-  height: 100%;
-}
-
-/* 
-.padding-inside {
-  padding: 10px 20px 0 20px;
+/* .jqZRqB {
+  height: 100% !important;
 } */
 
 .full-width {
@@ -35,6 +33,7 @@ body {
 }
 .x-axis {
   flex-direction: row;
+  height: 100%;
 }
 .y-axis {
   flex-direction: column;

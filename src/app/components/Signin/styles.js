@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 export const Container = styled.div`
-  width: 600px;
-  height: 300px;
-
   .subTitle {
     text-align: center;
     width: 85%;
@@ -21,6 +18,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 50px;
 
     flex-direction: column;
     .checkBox {
@@ -33,26 +31,25 @@ export const Container = styled.div`
         margin-left: 100px;
       }
     }
-  }
+    .Input-simples {
+      margin-bottom: 5px;
 
-  .Input-simples {
-    margin-bottom: 5px;
+      input {
+        width: 400px;
+        height: 30px;
 
-    input {
-      width: 400px;
-      height: 30px;
+        border: none;
+        border-bottom: 1px solid #d1d1d1;
+        background: #fff;
+        padding-left: 10px;
+      }
 
-      border: none;
-      border-bottom: 1px solid #d1d1d1;
-      background: #fff;
-      padding-left: 10px;
+      margin-top: 5px;
     }
-
-    margin-top: 5px;
   }
 
   button {
-    width: 300px;
+    width: 250px;
     height: 40px;
     border-radius: 6px;
     border: none;

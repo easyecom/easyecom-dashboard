@@ -42,7 +42,7 @@ export const Container = styled.div`
       justify-content: center;
       /* width: 50%;
       height: 100%; */
-
+      /* background: red; */
       strong {
         margin-bottom: 60px;
         font-size: 25px;
@@ -52,7 +52,7 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 50px;
+        margin-bottom: 10px;
 
         button {
           margin-right: 10px;

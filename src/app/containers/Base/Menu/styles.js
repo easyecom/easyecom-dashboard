@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  height: 100%;
+
   .container {
     height: 100%;
   }
@@ -13,7 +15,7 @@ export const Container = styled.div`
     background: #363636;
     height: 50px;
     color: #81b71a;
-    border-bottom: 1px solid #fff
+    border-bottom: 1px solid #fff;
   }
   .flex-end {
     padding-right: 10px;
