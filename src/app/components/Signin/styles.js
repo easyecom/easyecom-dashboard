@@ -10,7 +10,7 @@ export const Container = styled.div`
     color: #999;
 
     strong {
-      color: #81b71a;
+      /* color: #81b71a; */
     }
   }
 

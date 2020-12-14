@@ -25,6 +25,10 @@ import Variation from "./containers/Variation";
 import Config from "./containers/Config";
 import Perfil from "./containers/Perfil";
 
+import Analytics from "./containers/Analytics";
+import Promotions from "./containers/Promotions";
+import Marketing from "./containers/Marketing";
+
 class App extends Component {
   componentDidMount() {
     initApp();
@@ -52,6 +56,10 @@ class App extends Component {
             <Route path={"/Produto-novo"} exact component={base(ProductNew)} />
             <Route path={"/Config"} exact component={base(Config)} />
             <Route path={"/Variacao/:id"} exact component={base(Variation)} />
+
+            <Route path={"/Analytics"} exact component={base(Analytics)} />
+            <Route path={"/Promocoes"} exact component={base(Promotions)} />
+            <Route path={"/Marketing"} exact component={base(Marketing)} />
 
             <Route path={"/Perfil"} exact component={base(Perfil)} />
             <Route path={"/login"} exact component={NoAuth(Login)} />

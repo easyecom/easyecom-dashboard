@@ -22,7 +22,47 @@ class productNew extends Component {
     erros: {},
     warn: null,
     isActive: false,
-    images: null,
+    image_1: null,
+  };
+
+  imageHandler_1 = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        this.setState({ image_1: reader.result });
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  imageHandler_2 = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        this.setState({ image_2: reader.result });
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  imageHandler_3 = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        this.setState({ image_3: reader.result });
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  imageHandler_4 = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        this.setState({ image_4: reader.result });
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   saveProduct() {
@@ -49,20 +89,20 @@ class productNew extends Component {
 
   renderHead() {
     return (
-    <ContainerTitle >
+      <ContainerTitle>
         <div className="flex">
-        <div>
-          <Title type="h1" title={"Novo produto"} />
+          <div>
+            <Title type="h1" title={"Novo produto"} />
+          </div>
+          <div className="flex-1 flex flex-end">
+            <strong>
+              {this.state.isActive == true ? "ativo" : "inativo"}
+              &nbsp;{" "}
+            </strong>{" "}
+            <SwitchWrapper onChange={this.onIsActive} />
+          </div>
         </div>
-        <div className="flex-1 flex flex-end">
-          <strong>
-            {this.state.isActive == true ? "ativo" : "inativo"}
-            &nbsp;{" "}
-          </strong>{" "}
-          <SwitchWrapper onChange={this.onIsActive} />
-        </div>
-      </div>
-    </ContainerTitle>
+      </ContainerTitle>
     );
   }
 
@@ -81,10 +121,14 @@ class productNew extends Component {
       sku,
       title,
       isActive,
+      image_1,
+      image_2,
+      image_3,
+      image_4,
       erros,
     } = this.state;
 
-    const camera = "";
+    // fazer função para renderizar as imagens
 
     return (
       <ContainerInput>
@@ -300,23 +344,72 @@ class productNew extends Component {
           <p>Enviar imagens</p>
           <div className="images">
             <label id="image">
-              <input type="file" />
-              <i class="fas fa-camera" alt="Adcionar foto"></i>
-            </label>
-            <label id="image">
-              <input type="file" />
-              <i class="fas fa-camera" alt="Adcionar foto"></i>
-            </label>
-            <label id="image">
-              <input type="file" />
-              <i class="fas fa-camera" alt="Adcionar foto"></i>
+              <input
+                type="file"
+                alt="Adcionar foto"
+                className=""
+                onChange={this.imageHandler_1}
+              />
+              <img
+                src={image_1 ? image_1 : null}
+                alt=""
+                id="img"
+                className="img"
+                width={`${image_1} ? "140" : null`}
+                height={image_1 ? "140" : null}
+              />
+              {image_1 ? null : <i class="fas fa-camera"></i>}
             </label>
             <label id="image">
               <input
                 type="file"
-                onChange={(e) => this.setState(e.target.files)}
+                alt="Adcionar foto"
+                className=""
+                onChange={this.imageHandler_2}
               />
-              <i class="fas fa-camera" alt="Adcionar foto"></i>
+              <img
+                src={image_2 ? image_2 : null}
+                alt=""
+                id="img"
+                className="img"
+                width={`${image_2} ? "140" : null`}
+                height={image_2 ? "140" : null}
+              />
+              {image_2 ? null : <i class="fas fa-camera"></i>}
+            </label>
+            <label id="image">
+              <input
+                type="file"
+                alt="Adcionar foto"
+                className=""
+                onChange={this.imageHandler_3}
+              />
+              <img
+                src={image_3 ? image_3 : null}
+                alt=""
+                id="img"
+                className="img"
+                width={`${image_3} ? "140" : null`}
+                height={image_3 ? "140" : null}
+              />
+              {image_3 ? null : <i class="fas fa-camera"></i>}
+            </label>
+            <label id="image">
+              <input
+                type="file"
+                alt="Adcionar foto"
+                className=""
+                onChange={this.imageHandler_4}
+              />
+              <img
+                src={image_4 ? image_4 : null}
+                alt=""
+                id="img"
+                className="img"
+                width={`${image_4} ? "140" : null`}
+                height={image_4 ? "140" : null}
+              />
+              {image_4 ? null : <i class="fas fa-camera"></i>}
             </label>
           </div>
           <div className="btn">
