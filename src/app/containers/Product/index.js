@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import jwt_decode from "jwt-decode";
 
-import { Container } from "./styles";
-import { getToken } from "../../actions/helpers/localStorage";
 import * as actions from "../../actions/products";
 
 class Products extends Component {

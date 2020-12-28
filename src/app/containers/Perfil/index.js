@@ -5,7 +5,7 @@ class Perfil extends Component {
   render() {
     return (
       <Container>
-        <h1>Perfil</h1>
+        <h1>Funcionalidade de Perfil em desenvolvimento</h1>
       </Container>
     );
   }

@@ -5,7 +5,7 @@ class Marketing extends Component {
   render() {
     return (
       <Container>
-        <h1>Funcionalidade em desenvolvimento</h1>
+        <h1>Funcionalidade de Marketing em desenvolvimento</h1>
       </Container>
     );
   }

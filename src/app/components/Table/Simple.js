@@ -15,8 +15,8 @@ const TableSimple = ({ header, datas }) => (
           </tr>
         </thead>
         <tbody>
-          {datas.map((line, index) => (
-            <tr key={index}>
+          {datas.map((line, idx) => (
+            <tr key={idx}>
               {header.map((item, index) => (
                 <td className="list-order" key={index}>
                   {line[item] || ""}

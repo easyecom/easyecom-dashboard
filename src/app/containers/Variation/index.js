@@ -43,6 +43,7 @@ class Variation extends Component {
       if (item.variation_id === variation.variationId) {
         return item;
       }
+      return null
     });
 
     return (

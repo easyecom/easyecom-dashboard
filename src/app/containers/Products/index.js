@@ -42,7 +42,7 @@ class Products extends Component {
 
   render() {
     const { products } = this.props;
-    console.log(products, "products/index 45");
+    // console.log(products, "products/index 45");
 
     const datas = [];
     (products || []).forEach((item) => {
