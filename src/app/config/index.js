@@ -1,1 +1,1 @@
-export const api = "https://easyecom-backend.herokuapp.com"; //"http://localhost:3777" ||
+export const api = "http://localhost:3777" //"https://easyecom-backend.herokuapp.com"; //

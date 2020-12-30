@@ -43,6 +43,8 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.props;
+    console.log(this.props);
+
     const datas = [];
 
     (categories || []).forEach((item) => {

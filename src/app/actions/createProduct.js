@@ -6,7 +6,6 @@ import { getHeaders } from "./helpers/localStorage";
 // import { errorHandling } from "./helpers/errorHandling";
 
 export const saveProducts = async (product, store_id, cb) => {
-
   const { data } = await axios.post(
     `${api}/stores/${store_id}/products`,
     {
@@ -66,28 +65,22 @@ export const saveProducts = async (product, store_id, cb) => {
     getHeaders()
   );
 
-  return console.log(price, stock);
+  let formData = new FormData();
+  formData.append("file", product.image_1);
+  formData.append("file", product.image_2);
+  formData.append("file", product.image_3);
+  formData.append("file", product.image_4);
+  formData.append("variation_id", variation.variationId);
 
-  // const saveImages = function (dispatch) {
-  //   axios
-  //     .post(
-  //       `${api}/stores/${store_id}/categories`,
-  //       {
-  //         categoryName: category.categoryName,
-  //         description: category.description,
-  //         isActive: category.isActive,
-  //         refId: category.refId,
-  //         products: category.products,
-  //       },
-  //       getHeaders()
-  //     )
-  //     .then((response) => {
-  //       console.log(response);
-  //       dispatch({ type: SAVE_PRODUCT, payload: respose.data });
-  //       cb(null);
-  //     })
-  //     .catch((err) => cb(errorHandling(err)));
-  // };
+  const { data: images } = await axios.post(
+    `${api}/stores/${store_id}/images`,
+    formData,
+    getHeaders()
+  );
 
-  // return saveProduct;
+  const { data: getVariation } = await axios.get(
+    `${api}/stores/${store_id}/variations/${variation.variationId}`
+  );
+
+  return getVariation
 };

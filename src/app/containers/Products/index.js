@@ -41,10 +41,11 @@ class Products extends Component {
   }
 
   render() {
-    const { products } = this.props;
-    // console.log(products, "products/index 45");
-
+    const { products: item } = this.props;
+    const products = item && item.results ? item.results : "";
+    
     const datas = [];
+
     (products || []).forEach((item) => {
       datas.push({
         ID: item.productId,

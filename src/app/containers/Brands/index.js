@@ -53,7 +53,7 @@ class Brands extends Component {
 
   render() {
     const { brands } = this.props;
-    console.log(brands);
+    // console.log(brands);
     const datas = [];
 
     (brands || []).forEach((item) => {

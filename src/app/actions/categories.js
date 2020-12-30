@@ -10,7 +10,7 @@ export const getCategories = (store_id) => {
     axios
       .get(`${api}/stores/${store_id}/categories`, getHeaders())
       .then((response) => {
-        //   console.log(response)
+          // console.log(response)
         dispatch({ type: GET_CATEGORIES, payload: response.data });
       })
       .catch(errorHandling);

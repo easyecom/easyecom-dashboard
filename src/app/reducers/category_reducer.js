@@ -3,10 +3,10 @@ import { GET_CATEGORIES, GET_CATEGORY } from "../actions/utils/types";
 export default (state = {}, action) => {
   switch (action.type) {
     case GET_CATEGORIES:
-      //   console.log(action.payload.categories);
+        // console.log(action.payload, "teste");
       return {
         ...state,
-        categories: action.payload.categories,
+        categories: action.payload,
       };
     case GET_CATEGORY:
       return {

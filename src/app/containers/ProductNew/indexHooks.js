@@ -1,9 +1,8 @@
 // buscar categoria e marca para passar no options
 
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
-import { toast } from "react-toastify";
 
 import Title from "../../components/Text/Title.js";
 import InputSimple from "../../components/Inputs/Simple";
@@ -14,105 +13,49 @@ import { Container, ContainerTitle, ContainerInput } from "./styles";
 import { getToken } from "../../actions/helpers/localStorage";
 import { saveProducts } from "../../actions/createProduct";
 
-class productNew extends Component {
-  state = {
-    productName: "",
-    title: "",
-    offerPrice: 0.0,
-    salesPrice: 0.0,
-    quantity: 0,
-    isActive: true,
-    mainCategory: 1,
-    categoryId: [1],
-    brand_id: 1,
-    sku: 1,
-    image_1: null,
-    previewImage1: null,
-    image_2: null,
-    previewImage2: null,
-    image_3: null,
-    previewImage3: null,
-    image_4: null,
-    previewImage4: null,
-    erros: {},
-    warn: null,
-    message: null,
-  };
+function ProductNew() {
+  const [productName, setProductName] = useState("");
+  const [isActive, setIsActive] = useState(true);
+  const [erros, setErros] = useState("");
+  const [title, setTitle] = useState("");
+  const [salesPrice, setSalesPrice] = useState("");
+  const [offerPrice, setOfferPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [minstock, setMinStock] = useState("");
+  const [image_1, setImage_1] = useState();
+  const [image_2, setImage_2] = useState();
+  const [image_3, setImage_3] = useState();
+  const [image_4, setImage_4] = useState();
 
-  imageHandler_1(e) {
-    this.setState({ image_1: e.target.files[0] });
+  console.log(productName);
+  // const [mainCategory, setMainCategory] = useState("");
+  // const [brand_id, setBrand_id] = useState([]);
+  // const [sku, setSku] = useState("");
+  // const [warn, setWarn] = useState("");
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({ previewImage1: reader.result });
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
-  imageHandler_2(e) {
-    this.setState({ image_2: e.target.files[0] });
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({ previewImage2: reader.result });
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
-  imageHandler_3(e) {
-    this.setState({ image_3: e.target.files[0] });
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({ previewImage3: reader.result });
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
-  imageHandler_4(e) {
-    this.setState({ image_4: e.target.files[0] });
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({ previewImage4: reader.result });
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
-  async saveProduct() {
-    const { user } = this.props;
-
+  const saveProduct = (props) => {
+    const { user } = props;
+    console.log(props);
     if (!user) {
       const token = getToken();
       const { payload } = jwt_decode(token);
 
-      const res = await saveProducts(this.state, payload.store_id);
-      if (res) {
-        console.log(res);
-
-        return this.setState({
-          message: toast.success("Produto adcionada com sucesso"),
+      return saveProducts(this.state, payload.store_id, (error) => {
+        this.setState({
+          warn: !error,
+          message: error ? error.message : "Produto adcionada com sucesso",
         });
-      }
+      });
     }
 
     const { store_id } = user;
 
     this.props.saveProducts(this.state, store_id);
-    toast.success("Produto adcionada com sucesso");
-  }
+  };
 
-  onIsActive = () => this.setState({ isActive: !this.state.isActive });
+  const onIsActive = () => setIsActive({ isActive: !isActive });
 
-  renderHead() {
+  const renderHead = () => {
     return (
       <ContainerTitle>
         <div className="flex">
@@ -121,40 +64,17 @@ class productNew extends Component {
           </div>
           <div className="flex-1 flex flex-end">
             <strong>
-              {this.state.isActive === true ? "ativo" : "inativo"}
+              {isActive === true ? "ativo" : "inativo"}
               &nbsp;{" "}
             </strong>{" "}
-            <SwitchWrapper onChange={this.onIsActive} />
+            <SwitchWrapper onChange={onIsActive} />
           </div>
         </div>
       </ContainerTitle>
     );
-  }
+  };
 
-  onChangeInput = (field, value) => this.setState({ [field]: value });
-
-  renderDatas() {
-    const {
-      productName,
-      descriptionShort,
-      description,
-      mainCategory,
-      categoryId,
-      brand_id,
-      isActive,
-      offerPrice,
-      salesPrice,
-      quantity,
-      title,
-      previewImage1,
-      previewImage2,
-      previewImage3,
-      previewImage4,
-      erros,
-    } = this.state;
-
-    // fazer função para renderizar as imagens
-
+  const renderDatas = () => {
     return (
       <ContainerInput>
         <div className="card-input">
@@ -166,10 +86,8 @@ class productNew extends Component {
                 placeholder={"Nome produto. Ex. (Smartphone samsung)"}
                 type="text"
                 value={productName}
-                erros={erros}
-                onChange={(evento) =>
-                  this.onChangeInput("productName", evento.target.value)
-                }
+                erros={erros.productName}
+                onChange={(e) => setProductName(e.target.value)}
               />
               <InputSimple
                 name="Titulo"
@@ -180,9 +98,7 @@ class productNew extends Component {
                 type="text"
                 value={title}
                 erros={erros.title}
-                onChange={(evento) =>
-                  this.onChangeInput("title", evento.target.value)
-                }
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className="text-areas">
@@ -257,9 +173,7 @@ class productNew extends Component {
                     type="text"
                     value={salesPrice}
                     erros={erros.salesPrice}
-                    onChange={(evento) =>
-                      this.onChangeInput("salesPrice", evento.target.value)
-                    }
+                    onChange={(e) => setSalesPrice(e.target.value)}
                   />
                 </div>
               </div>
@@ -273,9 +187,7 @@ class productNew extends Component {
                     type="text"
                     value={offerPrice}
                     erros={erros.offerPrice}
-                    onChange={(evento) =>
-                      this.onChangeInput("offerPrice", evento.target.value)
-                    }
+                    onChange={(e) => setOfferPrice(e.target.value)}
                   />
                 </div>
               </div>
@@ -289,9 +201,7 @@ class productNew extends Component {
                     type="text"
                     value={quantity}
                     erros={erros.quantity}
-                    onChange={(evento) =>
-                      this.onChangeInput("quantity", evento.target.value)
-                    }
+                    onChange={(e) => setQuantity(e.target.value)}
                   />
                 </div>
               </div>
@@ -299,15 +209,13 @@ class productNew extends Component {
                 <p>ESTOQUE MIN</p>
                 <div className="item">
                   <InputSimple
-                    name="stock"
-                    label="stock"
+                    name="min stock"
+                    label="min stock"
                     placeholder={"0"}
                     type="text"
-                    value={title}
-                    erros={erros.title}
-                    onChange={(evento) =>
-                      this.onChangeInput("title", evento.target.value)
-                    }
+                    value={minstock}
+                    erros={erros.minstock}
+                    onChange={(e) => setMinStock(e.target.value)}
                   />
                 </div>
               </div>
@@ -321,11 +229,11 @@ class productNew extends Component {
                     label="altura"
                     placeholder={"0 cm"}
                     type="text"
-                    value={title}
-                    erros={erros.title}
-                    onChange={(evento) =>
-                      this.onChangeInput("title", evento.target.value)
-                    }
+                    // value={title}
+                    // erros={erros.title}
+                    // onChange={(evento) =>
+                    //   onChangeInput("title", evento.target.value)
+                    // }
                   />
                 </div>
               </div>
@@ -337,11 +245,11 @@ class productNew extends Component {
                     label="largura"
                     placeholder={"0 cm"}
                     type="text"
-                    value={title}
-                    erros={erros.title}
-                    onChange={(evento) =>
-                      this.onChangeInput("title", evento.target.value)
-                    }
+                    // value={title}
+                    // erros={erros.title}
+                    // onChange={(evento) =>
+                    //   onChangeInput("title", evento.target.value)
+                    // }
                   />
                 </div>
               </div>
@@ -353,11 +261,11 @@ class productNew extends Component {
                     label="comprimento"
                     placeholder={"0 cm"}
                     type="text"
-                    value={title}
-                    erros={erros.title}
-                    onChange={(evento) =>
-                      this.onChangeInput("title", evento.target.value)
-                    }
+                    // value={title}
+                    // erros={erros.title}
+                    // onChange={(evento) =>
+                    //   onChangeInput("title", evento.target.value)
+                    // }
                   />
                 </div>
               </div>
@@ -369,11 +277,11 @@ class productNew extends Component {
                     label="peso"
                     placeholder={"0 kg"}
                     type="text"
-                    value={title}
-                    erros={erros.title}
-                    onChange={(evento) =>
-                      this.onChangeInput("title", evento.target.value)
-                    }
+                    // value={title}
+                    // erros={erros.title}
+                    // onChange={(evento) =>
+                    //   onChangeInput("title", evento.target.value)
+                    // }
                   />
                 </div>
               </div>
@@ -384,100 +292,97 @@ class productNew extends Component {
             <label id="image">
               <input
                 type="file"
-                multiple
                 alt="Adcionar foto"
                 className=""
-                onChange={(e) => this.imageHandler_1(e)}
+                onChange={(e) => setImage_1(e.target.files[0])}
               />
               <img
-                src={previewImage1 ? previewImage1 : null}
+                src={image_1 ? image_1 : null}
                 alt=""
                 id="img"
                 className="img"
-                width={`${previewImage1} ? "140" : null`}
-                height={previewImage1 ? "140" : null}
+                width={`${image_1} ? "140" : null`}
+                height={image_1 ? "140" : null}
               />
-              {previewImage1 ? null : <i class="fas fa-camera"></i>}
+              {image_1 ? null : <i class="fas fa-camera"></i>}
             </label>
             <label id="image">
               <input
                 type="file"
                 alt="Adcionar foto"
                 className=""
-                onChange={(e) => this.imageHandler_2(e)}
+                onChange={(e) => setImage_2(e.target.files[0])}
               />
               <img
-                src={previewImage2 ? previewImage2 : null}
+                src={image_2 ? image_2 : null}
                 alt=""
                 id="img"
                 className="img"
-                width={`${previewImage2} ? "140" : null`}
-                height={previewImage2 ? "140" : null}
+                width={`${image_2} ? "140" : null`}
+                height={image_2 ? "140" : null}
               />
-              {previewImage2 ? null : <i class="fas fa-camera"></i>}
+              {image_2 ? null : <i class="fas fa-camera"></i>}
             </label>
             <label id="image">
               <input
                 type="file"
                 alt="Adcionar foto"
                 className=""
-                onChange={(e) => this.imageHandler_3(e)}
+                onChange={(e) => setImage_3(e.target.files[0])}
               />
               <img
-                src={previewImage3 ? previewImage3 : null}
+                src={image_3 ? image_3 : null}
                 alt=""
                 id="img"
                 className="img"
-                width={`${previewImage3} ? "140" : null`}
-                height={previewImage3 ? "140" : null}
+                width={`${image_3} ? "140" : null`}
+                height={image_3 ? "140" : null}
               />
-              {previewImage3 ? null : <i class="fas fa-camera"></i>}
+              {image_3 ? null : <i class="fas fa-camera"></i>}
             </label>
             <label id="image">
               <input
                 type="file"
                 alt="Adcionar foto"
                 className=""
-                onChange={(e) => this.imageHandler_4(e)}
+                onChange={(e) => setImage_4(e.target.files[0])}
               />
               <img
-                src={previewImage4 ? previewImage4 : null}
+                src={image_4 ? image_4 : null}
                 alt=""
                 id="img"
                 className="img"
-                width={`${previewImage4} ? "140" : null`}
-                height={previewImage4 ? "140" : null}
+                width={`${image_4} ? "140" : null`}
+                height={image_4 ? "140" : null}
               />
-              {previewImage4 ? null : <i class="fas fa-camera"></i>}
+              {image_4 ? null : <i class="fas fa-camera"></i>}
             </label>
           </div>
           <div className="btn">
             <ButtonSimple
               type="component-button"
-              onClick={() => this.saveProduct()}
+              onClick={() => saveProduct()}
               label="SALVAR"
             />
           </div>
         </div>
       </ContainerInput>
     );
-  }
+  };
 
-  render() {
-    return (
-      <Container>
-        <div className="new-product">
-          <div className="card">
-            {this.renderHead()}
-            <div className="flex x-axis ">
-              {this.renderDatas()}
-              {/* <div className=""></div> */}
-            </div>
+  return (
+    <Container>
+      <div className="new-product">
+        <div className="card">
+          {renderHead()}
+          <div className="flex x-axis ">
+            {renderDatas()}
+            {/* <div className=""></div> */}
           </div>
         </div>
-      </Container>
-    );
-  }
+      </div>
+    </Container>
+  );
 }
 
 const mapStateToProps = (state) => ({
@@ -485,4 +390,4 @@ const mapStateToProps = (state) => ({
   saveProduct: state.saveProduct.product,
 });
 
-export default connect(mapStateToProps)(productNew);
+export default connect(mapStateToProps)(ProductNew);
